@@ -44,9 +44,26 @@
 					$('#input_text').val(word);
 					$('#word').hide();
 
-				})
+				});
+				
+				$(".h_left_d").click(function(e){ 
+					$("#i3").toggle(); 
+				    e.stopPropagation();
+				});
+				   
+				$(document).click(function(){ 
+					$("#i3").hide(); 
+				}); 
+				   
+
+				$("#i3").click(function(e){ 
+					e.stopPropagation(); 
+				});
 	
-			})	
+			});
+			
+				 
+			 
 		</script>
 		<style type="text/css">
 			Body{
@@ -154,6 +171,15 @@
 				margin-left:130px;
 				
 			}
+			#i3{
+				position: absolute;
+				z-index: 99;
+				width: 145px;
+				height: auto;
+				background-color: white;
+				border: black solid 1px;
+				display: none;
+			}
 			.middle{
 				border:1px solid yellow;
 				background:white;
@@ -186,8 +212,12 @@
 					</div>
 					
 					<div class="h_left_d">
-						<a href="#"><img src="image/zhong.PNG"/></a>
+						<button><img src="image/zhong.PNG"/></button>
 					</div>
+					<div id="i3">
+						<div class="i31">1</div>
+						<div>2</div>
+	  				</div>
 				</div>
 				
 				
