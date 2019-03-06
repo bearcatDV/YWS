@@ -1,0 +1,11 @@
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+	<struts>
+		<package name="quora" namespace="/" extends="struts-default">
+			<action name="User_*" class="org.bigjava.action.UserAction" method="{1}">
+				<result name="success">/WEB-INF/views/success.jsp</result>
+				<result name="error">/index.jsp</result>
+			</action>
+		</package>
+	</struts>
