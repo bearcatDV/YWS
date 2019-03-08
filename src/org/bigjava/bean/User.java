@@ -1,15 +1,18 @@
 package org.bigjava.bean;
 
+import java.util.Date;
+
 public class User {
+	private Integer id;  //id
+	private String username;  //用户名
+	private String account;	 //账号
+	private String password;	//密码
+	private String sex;  //性别
+	private Date birth;  //出生日期
+	private String state;  //状态
 
 	public User() {
 	}
-	private Integer id;
-	private String username;
-	private String password;
-	private String sex;
-	private String birth;
-	private String email;
 	public Integer getId() {
 		return id;
 	}
@@ -34,31 +37,28 @@ public class User {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-	public String getBirth() {
+	
+	public Date getBirth() {
 		return birth;
 	}
-	public void setBirth(String birth) {
+	public void setBirth(Date birth) {
 		this.birth = birth;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
 	}
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", sex=" + sex + ", birth="
-				+ birth + ", email=" + email + "]";
+		return "User [id=" + id + ", username=" + username + ", account=" + account + ", password=" + password
+				+ ", sex=" + sex + ", birth=" + birth + ", state=" + state + "]";
 	}
-	public User(Integer id, String username, String password, String sex, String birth, String email) {
+	public User(Integer id, String username, String account, String password, String sex, Date birth, String state) {
 		super();
 		this.id = id;
 		this.username = username;
+		this.account = account;
 		this.password = password;
 		this.sex = sex;
 		this.birth = birth;
-		this.email = email;
+		this.state = state;
 	}
+	
 	
 }
