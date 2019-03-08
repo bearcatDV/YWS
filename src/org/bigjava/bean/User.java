@@ -3,13 +3,13 @@ package org.bigjava.bean;
 import java.util.Date;
 
 public class User {
-	private Integer id;  //ÓÃ»§id
-	private String username;  //ÓÃ»§Ãû
-	private String account;	 //ÓÃ»§ÕËºÅ
-	private String password;	//ÓÃ»§ÃÜÂë
-	private String sex;  //ĞÔ±ğ
-	private Date birth;  //³öÉúÈÕÆÚ
-	private String state;  //ÕË»§×´Ì¬
+	private Integer id;  //id
+	private String username;  //ç”¨æˆ·å
+	private String account;	 //è´¦å·
+	private String password;	//å¯†ç 
+	private String sex;  //æ€§åˆ«
+	private Date birth;  //å‡ºç”Ÿæ—¥æœŸ
+	private String state;  //çŠ¶æ€
 
 	public Integer getId() {
 		return id;
