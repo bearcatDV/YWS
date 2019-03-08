@@ -25,6 +25,12 @@ public class User {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	public String getAccount() {
+		return account;
+	}
+	public void setAccount(String account) {
+		this.account = account;
+	}
 	public String getPassword() {
 		return password;
 	}
@@ -43,6 +49,13 @@ public class User {
 	}
 	public void setBirth(Date birth) {
 		this.birth = birth;
+	}
+	
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
 	}
 	@Override
 	public String toString() {
