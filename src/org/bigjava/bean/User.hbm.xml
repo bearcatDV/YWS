@@ -1,17 +1,27 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2019-3-1 10:28:16 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 2019-3-8 10:17:21 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
-    <class name="org.bigjava.bean.User" table="q_user">
+    <class name="org.bigjava.bean.User" table="user">
         <id name="id" type="java.lang.Integer">
+            <column name="id" />
             <generator class="native" />
         </id>
-        <property name="username" type="java.lang.String"></property>
-        <property name="account" type="java.lang.String"></property>
-        <property name="password" type="java.lang.String"></property>
-        <property name="sex" type="java.lang.String"></property>
-        <property name="birth" type="java.util.Date"></property>
-        <property name="state" type="java.lang.String"></property>
+        <property name="username" type="java.lang.String">
+            <column name="username" />
+        </property>
+        <property name="password" type="java.lang.String">
+            <column name="password" />
+        </property>
+        <property name="sex" type="java.lang.String">
+            <column name="sex" />
+        </property>
+        <property name="birth" type="java.lang.String">
+            <column name="birth" />
+        </property>
+        <property name="email" type="java.lang.String">
+            <column name="email" />
+        </property>
     </class>
 </hibernate-mapping>

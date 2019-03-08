@@ -1,16 +1,15 @@
 package org.bigjava.bean;
 
-import java.util.Date;
-
 public class User {
-	private Integer id;  //用户id
-	private String username;  //用户名
-	private String account;	 //用户账号
-	private String password;	//用户密码
-	private String sex;  //性别
-	private Date birth;  //出生日期
-	private String state;  //账户状态
 
+	public User() {
+	}
+	private Integer id;
+	private String username;
+	private String password;
+	private String sex;
+	private String birth;
+	private String email;
 	public Integer getId() {
 		return id;
 	}
@@ -22,12 +21,6 @@ public class User {
 	}
 	public void setUsername(String username) {
 		this.username = username;
-	}
-	public String getAccount() {
-		return account;
-	}
-	public void setAccount(String account) {
-		this.account = account;
 	}
 	public String getPassword() {
 		return password;
@@ -41,23 +34,31 @@ public class User {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-	public Date getBirth() {
+	public String getBirth() {
 		return birth;
 	}
-	public void setBirth(Date birth) {
+	public void setBirth(String birth) {
 		this.birth = birth;
 	}
-	public String getState() {
-		return state;
+	public String getEmail() {
+		return email;
 	}
-	public void setState(String state) {
-		this.state = state;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", account=" + account + ", password=" + password
-				+ ", sex=" + sex + ", birth=" + birth + ", state=" + state + "]";
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", sex=" + sex + ", birth="
+				+ birth + ", email=" + email + "]";
 	}
-	
+	public User(Integer id, String username, String password, String sex, String birth, String email) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.sex = sex;
+		this.birth = birth;
+		this.email = email;
+	}
 	
 }
