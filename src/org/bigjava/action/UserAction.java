@@ -1,6 +1,8 @@
 package org.bigjava.action;
 
-
+/**
+ * test
+ */
 
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -47,7 +49,7 @@ public class UserAction extends ActionSupport implements RequestAware,ModelDrive
 		Pattern pattern=null;
 		boolean b = false; 
 		if(username == null || password == null){
-			result="账号或密码不能为空！";
+			result="璐﹀彿鎴栧瘑鐮佷笉鑳戒负绌猴紒";
 			return "error";
 		}
 		
@@ -55,12 +57,12 @@ public class UserAction extends ActionSupport implements RequestAware,ModelDrive
 		matcher = pattern.matcher(username);
 		b=matcher.matches();
 		if(b ==false){
-			result="用户名2-10个字，只能是中文或英文!";
+			result="鐢ㄦ埛鍚�2-10涓瓧锛屽彧鑳芥槸涓枃鎴栬嫳鏂�!";
 		}
 		
 		User user1=userDao.login(user);
 		if(user1 == null){
-			result="账号不存在！";
+			result="璐﹀彿涓嶅瓨鍦紒";
 			return "error";
 		}
 		System.out.println("login");
