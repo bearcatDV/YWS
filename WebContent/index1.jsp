@@ -341,10 +341,94 @@
 				border:1px solid yellow;
 				background:white;
 				width:65%;
-				height:300px;
+				height:70%;
 				margin:0 auto;
 				margin-top:10px;
 			}
+			
+			.middle_left{
+                width: 65%; 
+                height: 100%; 
+                background-color: #F6F1B3; 
+                float:left;
+            
+			}
+			
+			.middle_right{
+                width: 34%; 
+                height: 100%; 
+                background-color: #F6F1B3; 
+                float:left;
+                margin-left:1%;
+            
+			}
+			
+			.m_left_top{
+                width: 100%; 
+                height: 20%; 
+                background-color: white; 
+                float:top;
+            
+			}
+			
+			.m_left{
+                width: 30%; 
+                height: 100%; 
+                background-color: yellow; 
+                float:left;
+            
+			}
+			
+			.m_middle{
+                width: 30%; 
+                height: 100%; 
+                background-color: red; 
+                float:left;
+                margin-left:5%
+            
+			}
+			
+			.m_right{
+                width: 30%; 
+                height: 100%; 
+                background-color: yellow; 
+                float:right;
+            
+			}
+			
+			.black_overlay{ 
+            display: none; 
+            position: absolute; 
+            top: 0%; 
+            left: 0%; 
+            width: 100%; 
+            height: 100%; 
+            background-color: black; 
+            z-index:1001; 
+            -moz-opacity: 0.8; 
+            opacity:.80; 
+            filter: alpha(opacity=88); 
+        } 
+        .white_content { 
+            display: none; 
+            position: absolute; 
+            top: 20%; 
+            left: 30%; 
+            width: 35%; 
+            height: 55%; 
+            padding: 20px;  
+            background-color: white; 
+            z-index:1002; 
+            overflow: auto; 
+        } 
+        
+        textarea{
+            resize: none;
+        }
+	    
+	    a:link,a:visited{
+            text-decoration:none;
+        }
 	</style>
 
 </head>
@@ -400,9 +484,39 @@
 			
 		<div class="middle">
 				
+				<div class="middle">
+				<div class="middle_left"></div>
+				<div class="middle_right">
+				    <div class="m_left_top">
+				        <div class="m_left"></div>
+				        <div class="m_middle"></div>
+				        <div class="m_right">
+				        <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">
+				                写想法</a>
+				        </div>
+				    </div>
+				    
+				</div>
+		</div>
+				
 		</div>
 		
 	</div>
+		
+		<div id="light" class="white_content">
+		  <h1>写想法</h1><h4>ZH写出你的想法</h4>
+          <textarea rows="10%" cols="60%"></textarea>
+          
+    <form action=""  method="" style="margin-left:-70%; margin-top:3%">  
+     <input type="file" name="btn_file" style="display:none;" onchange="file_change(this.value)"/>
+     <input type="button" value="浏 览" onclick="btn_file.click();" name="get_file" style="
+     background:white; outline:none; border:none " />
+    </form>
+        </div> 
+        <div id="fade" class="black_overlay">
+            <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">
+                   <div style="position: absolute; top: 10%; left: 70%; color: white; font-size:30px ">X</div></a>
+        </div> 
 		
 </body>
 </html>
