@@ -1,31 +1,38 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2019-3-8 10:17:21 by Hibernate Tools 3.5.0.Final -->
+<!-- Generated 2019-3-19 23:53:02 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="org.bigjava.bean.User" table="ssh_user">
+    <class name="org.bigjava.bean.User" table="table_user">
         <id name="id" type="java.lang.Integer">
-            <column name="id" />
+            <column name="ID" />
             <generator class="native" />
         </id>
         <property name="username" type="java.lang.String">
-            <column name="username" />
-        </property>
-        <property name="password" type="java.lang.String">
-            <column name="password" />
+            <column name="USERNAME" />
         </property>
         <property name="account" type="java.lang.String">
-        	<column name="account" />
+            <column name="ACCOUNT" />
+        </property>
+        <property name="password" type="java.lang.String">
+            <column name="PASSWORD" />
         </property>
         <property name="sex" type="java.lang.String">
-            <column name="sex" />
+            <column name="SEX" />
         </property>
-        <property name="birth" type="date">
-            <column name="birth" />
+        <property name="birth" type="java.util.Date">
+            <column name="BIRTH" />
         </property>
         <property name="state" type="java.lang.String">
-        	<column name="state" />
+            <column name="STATE" />
         </property>
-        
+        <set name="questions" table="USER" inverse="false" lazy="true">
+            <key>
+                <column name="ID" />
+            </key>
+            <element type="string">
+                <column name="QUESTIONS_ID" />
+            </element>
+        </set>
     </class>
 </hibernate-mapping>

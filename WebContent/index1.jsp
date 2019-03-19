@@ -550,17 +550,18 @@
 		<div id="light" class="white_content">
 		  <h1>写想法</h1><h4>ZH写出你的想法</h4>
           
-    <form action="user-savefiles"  method="post" style=" margin-left:-60%;" >  
+    <form action="upload"  method="post" enctype="multipart/form-data" style=" margin-left:-60%;" >  
     
     <input type="text" name="type" />
     <br><br>
     <textarea name="what" rows="10%" cols="30%"></textarea>
     <br><br>
-    <input type="file" name="btn_file" style="display:none;" onchange="preview()" id="fileload" />     
-        <input type="button" value="浏 览" onclick="btn_file.click();" name="get_file" style=" background:white; outline:none; border:none " />
-	
+    <input type="file" name="myFile" style="display:none;" onchange="preview()" id="fileload" /> 
+   <input type="button" value="浏 览" onclick="myFile.click();" name="get_file" style=" background:white; outline:none; border:none " />
+
 		<input type="button" value="x" style="outline:none;" onclick="call();" />
 		<img id="image" style=" width:5%; height:10% "  />
+		
 		<br><br>
 		<input type="submit" value="提交" />
     </form>

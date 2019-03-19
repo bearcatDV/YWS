@@ -18,7 +18,17 @@
 			<result name="invalid.token">/login.jsp</result>
 			<interceptor-ref name="bigjavaStack"></interceptor-ref>
 		</action>
+		
+
+		
+		<action name="upload" class="org.bigjava.action.QuestionAction" method="savefiles">
+		
+		   <result name="file">/login.jsp</result>
+		   <result name="error">/index1.jsp</result>
+		</action>
+		
 	</package>
+	
 	
 
 	<package name="ajax" extends="json-default" namespace="/">

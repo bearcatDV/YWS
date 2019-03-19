@@ -2,24 +2,26 @@ package org.bigjava.dao.impl;
 
 import org.bigjava.bean.Question;
 import org.bigjava.dao.QuestionDao;
-import org.springframework.orm.hibernate3.HibernateTemplate;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 public class QuestionDaoImpl implements QuestionDao {
+	
+    private SessionFactory sessionFactory;
+	
+	
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+	
+	public Session getSession(){
+		return this.sessionFactory.getCurrentSession();
+	}
 
-	private HibernateTemplate hibernateTemplate;
-	
-	public HibernateTemplate getHibernateTemplate() {
-		return hibernateTemplate;
-	}
-	
-	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
-		this.hibernateTemplate = hibernateTemplate;
-	}
 	
 	@Override
-	public void FileSave(Question question) {
-		hibernateTemplate.save(question);
-
+	public void fileSave(Question question) {
+		
+		getSession().save(question);
 	}
-
 }
