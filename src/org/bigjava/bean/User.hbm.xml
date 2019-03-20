@@ -11,17 +11,20 @@
         <property name="username" type="java.lang.String">
             <column name="username" />
         </property>
+        <property name="account" type="java.lang.String">
+        	<column name="account" />
+        </property>
         <property name="password" type="java.lang.String">
             <column name="password" />
         </property>
-        <property name="account" type="java.lang.String">
-        	<column name="account" />
+        <property name="age" type="java.lang.String">
+        	<column name="age"></column>
         </property>
         <property name="sex" type="java.lang.String">
             <column name="sex" />
         </property>
-        <property name="birth" type="date">
-            <column name="birth" />
+        <property name="phone" type="java.lang.String">
+        	<column name="phone" />
         </property>
         <property name="state" type="java.lang.String">
         	<column name="state" />

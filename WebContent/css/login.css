@@ -67,11 +67,11 @@
 }
 
 /* 注册表单 开始 */
-#regist_account,
+#regist_username,
 #regist_password1,
 #regist_password2,
 #regist_phone,
-#regist_vcode
+#regist_age
 {
 	height: 42px;
 	border-radius: 0;
@@ -118,6 +118,6 @@
 /*注册表单容器*/
 #form_container2 {
 	width: 330px;
-	height: 300px;
+	height: 320px;
 	border-bottom: 1px solid #FFFFFF;
 }

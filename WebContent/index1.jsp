@@ -108,6 +108,21 @@
 				function out(obj){
 				 obj.style.backgroundColor="#F6F1B3"
 				};
+				$(function(){
+					
+					$(".mz_button").click(function(){
+						var a = $(this).text();
+						if(a == "阅读全文"){
+							$(this).prev().attr("class","meddle_content1");
+							$(this).text("收起");
+						}
+						if(a != "阅读全文"){
+							$(this).prev().attr("class","meddle_content");
+							$(this).text("阅读全文");
+						}
+					});
+					
+				});
 			
 		</script>
 		<style type="text/css">
@@ -118,7 +133,7 @@
 				border:1px solid red;
 				background:#F6F6F6;
 				width:100%;
-				height:600px;
+				height:auto !important;
 			}
 			.head{
 				background:white;
@@ -330,21 +345,82 @@
             	filter: alpha(opacity=88);
       			
         	}
-			div{
-		    	text-align:center;
-				line-height: 200%;
-			
-				text-color:block;
-			}
 			
 			.middle{
-				border:1px solid yellow;
-				background:white;
+				border:1px solid blue;
+				
 				width:65%;
-				height:300px;
+				height:600px;
 				margin:0 auto;
 				margin-top:10px;
 			}
+			.middle_left{
+				border:1px solid red;
+				background:white;
+				width:70%;
+				height:600px;
+				float:left;
+			}
+			.middle_right{
+				border:1px solid red;
+				background:white;
+				width:29%;
+				height:600px;
+				float:right;
+				
+			}
+			#middle_top{
+				border:1px solid blue;
+
+				width:100%;
+				float:top;
+			}
+			#middle_down{
+				 
+				border:1px solid blue;
+				width:100%;
+				height:50px;
+				float:top;
+			}
+			.meddle_title{
+				border:1px solid white;
+				
+				width:100%;
+				height:35px;
+				font-size:20px;
+				font-weight:bold;
+				line-height:8px;
+				margin-top:0px;
+				
+			
+			}
+			.meddle_title p{
+				margin-top:15px;
+			}
+			.meddle_content{
+				border:1px solid white;
+				width:100%;
+				height:73px;
+				font-size:18px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				display: -webkit-box; 
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 3; 
+			}
+			.meddle_content1{
+				border:1px solid white;
+				width:100%;
+				height:75px;
+				font-size:18px;
+				height:auto !important;
+			}
+			.mr_top{
+				border:1px solid red;
+				height:60px;
+				width:100%;
+			}
+			
 	</style>
 
 </head>
@@ -385,9 +461,6 @@
        					<div id="head_overlay" onclick="javaScriptDiv(id)"
 							onmouseover="over(this)" onmouseout="out(this)">我的主页</div>
 	   
-	   					<div id="middle_overlay" onclick="javaScriptDiv(id)"
-							onmouseover="over(this)" onmouseout="out(this)">设置</div> 
-	   
 	   					<div id="foot_overlay" onclick="javaScriptDiv(id)"
 							onmouseover="over(this)" onmouseout="out(this)">退出</div>
     				</div>
@@ -396,9 +469,35 @@
 					
 		</div>	
 				
-				
-			
 		<div class="middle">
+			<div class="middle_left">
+					
+				
+					<%
+						for(int i=0;i<3;i++){
+					%>
+					<div id="middle_top">
+						<div class="meddle_title"><p>标题</p></div>
+						<div class="meddle_content">
+							某某人说：xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx打发打发发色二等分发送到发送到发送到发发生的发生发生的发生发生的发生
+							打算发到付发生的发生发送到发飞洒地方飞洒地方是打发打发发送到发染发地方染发地方人打算发达人法地生发送到发飞洒地方飞洒地方
+							是打发打发发送到发染发地方染发地方人打算发达人法地
+						</div>
+						<button type="button" class="mz_button">阅读全文</button>
+						
+					</div>
+					<hr style="border:none;border-top:#ccc dashed 2px;"/>
+					<%	
+						}
+					%>
+				
+			</div>
+			<div class="middle_right">
+				<div class="mr_top">
+					<a href="#">写回答</a>
+					<a href="#">写文章</a>
+				</div>
+			</div>
 				
 		</div>
 		

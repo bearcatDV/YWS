@@ -1,7 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC
 	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
+	<constant name="struts.devMode" value="true"></constant>
+	
 	<package name="quora" namespace="/" extends="struts-default">
 		<interceptors>
 			<interceptor-stack name="bigjavaStack">
@@ -10,21 +13,17 @@
 			</interceptor-stack>
 		</interceptors>
 
-
-		<action name="User1_*" class="org.bigjava.action.UserAction"
+		<action name="UN_*" class="org.bigjava.action.UserAction"
 			method="{1}">
-			<result name="success">/WEB-INF/views/success.jsp</result>
-			<result name="error">/login.jsp</result>
-			<result name="invalid.token">/login.jsp</result>
-			<interceptor-ref name="bigjavaStack"></interceptor-ref>
+			<result name="success">/WEB-INF/views/write.jsp</result>
 		</action>
 	</package>
 	
 
 	<package name="ajax" extends="json-default" namespace="/">
-		<action name="User_*" class="org.bigjava.action.UserAction"
-			method="{1}">
-			<result type="json"></result>
+		<action name="User_*" class="org.bigjava.action.UserAction" method="{1}">
+			<result type="json" ></result>
 		</action>
 	</package>
+	
 </struts>
