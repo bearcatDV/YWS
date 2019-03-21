@@ -35,7 +35,7 @@
 				"user.password" : p_v
 			};
 			
-			
+			alert(p_v);
 			$.ajax({
 				url: "User_login",
 				type: "post",
@@ -52,7 +52,8 @@
 				},
 				
 				error:function(data, textStatus){
-					console.log(data);
+					alert("error");
+					
 					return false;
 				}
 			});

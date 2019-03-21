@@ -73,6 +73,7 @@ public class UserAction extends ActionSupport implements RequestAware,ModelDrive
 
 	//登录
 	public String login() throws Exception {
+		System.out.println("login"+user);
 		boolean b = false;
 		String username=user.getUsername();
 		String password=user.getPassword();
@@ -141,6 +142,7 @@ public class UserAction extends ActionSupport implements RequestAware,ModelDrive
 			result1=user1.getId().toString();
 			return SUCCESS;
 		}
+		System.out.println("jiesule");
 		return SUCCESS;
 		
 	}
