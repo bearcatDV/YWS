@@ -561,7 +561,7 @@
 		<img id="image" width:10%; height:20% />
 
         <br>
-		<input type="submit" value="提交" id="ifSubmit" disabled="true" style="width:55%; height:70%; margin-left:-10%; margin-top:10%; background-color:#00BFFF; border:none" />
+		<input type="submit" value="提交" id="ifSubmit" disabled="true" style="width:55%; height:70px; margin-left:-10%; margin-top:10%; background-color:#00BFFF; border:none" />
     </form>
     
     <!-- 判断textarea是否为空 -->
