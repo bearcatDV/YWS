@@ -12,14 +12,19 @@
 				<interceptor-ref name="token"></interceptor-ref>
 			</interceptor-stack>
 		</interceptors>
-
+		<action name="Photo_*" class="org.bigjava.action.PhotoUpload" method="{1}">
+			<result name="upload">/homePage.jsp</result>
+			<result name="message">/homePage.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
 		<action name="UN_*" class="org.bigjava.action.UserAction"
 			method="{1}">
-			<result name="success">/WEB-INF/views/write.jsp</result>
+			<result name="success">/views/index1.jsp</result>
+			<result name="homePage">/homePage.jsp</result>
 		</action>
 	</package>
 	
-
 	<package name="ajax" extends="json-default" namespace="/">
 		<action name="User_*" class="org.bigjava.action.UserAction" method="{1}">
 			<result type="json" ></result>

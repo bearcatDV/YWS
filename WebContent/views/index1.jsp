@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8" import="java.util.*,org.bigjava.bean.*"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -92,11 +92,12 @@
 			          }
 			        }
 			      }     
-			    }
+			}
 				
 				function javaScriptDiv(obj){
 				    var divVal = document.getElementById(obj).innerHTML;
-					document.write("this is："+divVal); 
+				    
+					
 				}
 				
 				// 鼠标光标接触事件
@@ -126,8 +127,8 @@
 			
 		</script>
 		<style type="text/css">
-			Body{
-				background-color:#F6F6F6;
+			body{
+				
 			}
 			.total{
 				border:1px solid red;
@@ -458,8 +459,8 @@
 					<div id="pop">
 	   					<div class="nav nav-border"></div>
        					<div class="nav nav-background"></div>
-       					<div id="head_overlay" onclick="javaScriptDiv(id)"
-							onmouseover="over(this)" onmouseout="out(this)">我的主页</div>
+       					<div id="head_overlay"
+							onmouseover="over(this)" onmouseout="out(this)"><a href="UN_homePage?id=${user.id}">我的主页</a></div>
 	   
 	   					<div id="foot_overlay" onclick="javaScriptDiv(id)"
 							onmouseover="over(this)" onmouseout="out(this)">退出</div>
@@ -471,7 +472,6 @@
 				
 		<div class="middle">
 			<div class="middle_left">
-					
 				
 					<%
 						for(int i=0;i<3;i++){

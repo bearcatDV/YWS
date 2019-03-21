@@ -21,12 +21,12 @@
 			var p_v = $("#login_password").val();
 			
 			if("" == u_v){
-				("#lab_type1").html("<Strong>"+用户名不能为空+"</Strong");
+				("#lab_type1").html("<Strong>用户名不能为空</Strong>");
 				return false;
 			}
 			
 			if("" == p_v){
-				$("#lab_type1").html("<Strong>"+密码不能为可空+"</Strong");
+				$("#lab_type1").html("<Strong>密码不能为可空</Strong>");
 				return false;
 			} 
 		
@@ -42,12 +42,11 @@
 				data: params,
 				dataType: "json",
 				success:function(data, textStatus){
-					if(data.result !="1" ){
+					if(data.result !="1"){
 						alert(data.result);
-						$("#lab_type1").html("<Strong>"+data.result+"</Strong");
+						$("#lab_type1").html("<Strong>"+data.result+"</Strong>");
 					}else{
-						alert("un");
-						window.location.href="UN_login_ok?id="+result;
+						window.location.href="UN_login_ok?id="+data.result1;
 					}
 					
 				},
@@ -62,31 +61,31 @@
 		//注册验证
 		$("#regist_btn").click(function(){
 			
-			
 			var u_v = $("#regist_username").val();
 			var p_v1 = $("#regist_password1").val();
 			var p_v2 = $("#regist_password2").val();
 			var age_v = $("#regist_age").val();
 			var sex_v =  $('input[name="user.sex"]:checked').val();
 			var phone_v = $("#regist_phone").val();
+			alert(phone_v);
 			 if("" == u_v){
-				$("#lab_type2").html("<Strong>"+用户名不能为空+"</Strong");
+				$("#lab_type2").html("<Strong>用户名不能为空</Strong>");
 				return false;
 			}
 			if("" == p_v1){
-				("#lab_type2").html("<Strong>"+密码不能为可空+"</Strong");
+				("#lab_type2").html("<Strong>密码不能为可空</Strong>");
 				return false;
 			} 
 			if(p_v1 != p_v2){
-				("#lab_type2").html("<Strong>"+密码输入不一致+"</Strong");
+				("#lab_type2").html("<Strong>密码输入不一致</Strong>");
 				return false;
 			}
 			if("" == age_v){
-				("#lab_type2").html("<Strong>"+年龄不能为空+"</Strong");
+				("#lab_type2").html("<Strong>年龄不能为空</Strong>");
 				return false;
 			}
 			if("" == phone_v){
-				("#lab_type2").html("<Strong>"+手机号码不能为空+"</Strong");
+				("#lab_type2").html("<Strong>手机号码不能为空</Strong>");
 				return false;
 			} 
 		
@@ -106,7 +105,7 @@
 				data: params,
 				dataType: "json",
 				success:function(data, textStatus){	
-					$("#lab_type2").html("<Strong>"+data.result+"</Strong");
+					$("#lab_type2").html("<Strong>"+data.result+"</Strong>");
 					
 				},
 				

@@ -42,4 +42,20 @@ public interface UserDao {
 	 * @return
 	 */
 	public User getUserByUsername(String username);
+	
+	/**
+	 * 通过ID获得用户
+	 * @param id
+	 * @return
+	 */
+	public User getUserById(Integer id);
+	
+	/**
+	 * 存入头像
+	 * @param user
+	 * @return
+	 */
+	public boolean savaPhotoById(User user);
+	
+	public boolean savaMessageById(User user);
 }

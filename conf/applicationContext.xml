@@ -51,7 +51,11 @@
    	<bean name="userDao" class="org.bigjava.dao.impl.UserDaoImpl">
    		<property name="sessionFactory" ref="sessionFactory"></property>
    	</bean>
-   	<bean name="userAction" class="org.bigjava.action.UserAction">
+   	<bean name="userAction" class="org.bigjava.action.UserAction" scope="prototype">
+   		<property name="userDao" ref="userDao"></property>
+   	</bean>
+   	
+   	<bean name="photoUpload" class="org.bigjava.action.PhotoUpload">
    		<property name="userDao" ref="userDao"></property>
    	</bean>
 </beans>

@@ -9,6 +9,12 @@ public class User {
 	private String sex; // 性别
 	private String phone; // 手机号
 	private String state; // 状态
+	private String photo;//头像
+	private String data;//出生日期
+	private String address;//住址
+	private String email;//邮件
+	private String hobby;//爱好
+	private String introduce;//个人简介
 	public User() {
 	}
 
@@ -73,9 +79,57 @@ public class User {
 	public void setState(String state) {
 		this.state = state;
 	}
-
 	
-	public User(Integer id, String username, String account, String password, String age, String sex, String phone, String state) {
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
+	}
+	
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getHobby() {
+		return hobby;
+	}
+
+	public void setHobby(String hobby) {
+		this.hobby = hobby;
+	}
+	
+	public String getIntroduce() {
+		return introduce;
+	}
+
+	public void setIntroduce(String introduce) {
+		this.introduce = introduce;
+	}
+
+	public User(Integer id, String username, String account, String password, String age, String sex, String phone,
+			String state, String photo, String data, String address, String email, String hobby, String introduce) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -85,12 +139,21 @@ public class User {
 		this.sex = sex;
 		this.phone = phone;
 		this.state = state;
+		this.photo = photo;
+		this.data = data;
+		this.address = address;
+		this.email = email;
+		this.hobby = hobby;
+		this.introduce = introduce;
 	}
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", account=" + account + ", password=" + password
-				+ ", age=" + age + ", sex=" + sex + ", phone=" + phone + ", state=" + state + "]";
+				+ ", age=" + age + ", sex=" + sex + ", phone=" + phone + ", state=" + state + ", photo=" + photo
+				+ ", data=" + data +", address=" + address + ", email=" + email + ", hobby=" + hobby +", introduce" + introduce + "]";
 	}
+
+	
 
 }

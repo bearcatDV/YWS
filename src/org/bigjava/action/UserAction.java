@@ -22,6 +22,7 @@ public class UserAction extends ActionSupport implements RequestAware,ModelDrive
 	private UserDao userDao;
 	Map<String, Object> request;
 	private String result;
+	private String result1;
 	private String rePassword; //密码确认验证
 	Matcher matcher=null;
 	Pattern pattern=null;
@@ -49,7 +50,15 @@ public class UserAction extends ActionSupport implements RequestAware,ModelDrive
 	public void setResult(String result) {
 		this.result = result;
 	}
-	
+	 
+
+	public String getResult1() {
+		return result1;
+	}
+
+	public void setResult1(String result1) {
+		this.result1 = result1;
+	}
 
 	public String getRePassword() {
 		return rePassword;
@@ -111,8 +120,9 @@ public class UserAction extends ActionSupport implements RequestAware,ModelDrive
 				return SUCCESS;
 			}
 			
-			result=user1.getId().toString();
-			System.out.println("login_id"+result);
+			result="1";
+			result1=user1.getId().toString();
+			System.out.println("login_id"+user1.getId());
 			return "success";
 			
 		}
@@ -124,7 +134,8 @@ public class UserAction extends ActionSupport implements RequestAware,ModelDrive
 				result="账号不存在";
 				return "success";
 			}
-			result=user1.getId().toString();
+			result="1";
+			result1=user1.getId().toString();
 			return SUCCESS;
 		}
 		return SUCCESS;
@@ -209,8 +220,21 @@ public class UserAction extends ActionSupport implements RequestAware,ModelDrive
 		result="注册成功！您的随机账号为"+account+",请去登录页面登录";
 		return "success";
 	}
-	
+	//登录成功
 	public String login_ok(){
+		System.out.println(user);
+		request.put("user", user);
+		return SUCCESS;
+	}
+	public String homePage() throws Exception{
+		User user1=userDao.getUserById(user.getId());
+		request.put("user", user1);
+		System.out.println("homePage_user1"+user1);
+		return "homePage";
+	}
+	//上传头像
+	public String upload() throws Exception{
+		System.out.println("id"+user.getId());
 		
 		return SUCCESS;
 	}
@@ -221,12 +245,5 @@ public class UserAction extends ActionSupport implements RequestAware,ModelDrive
 		}
 		return user;
 	}
-
-/*	@Override
-	public String toString() {
-//		return "UserAction [result=" + result + "]";
-		return null;
-	}*/
-	
 	
 }

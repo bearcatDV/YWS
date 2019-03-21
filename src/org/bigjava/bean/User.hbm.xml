@@ -29,6 +29,23 @@
         <property name="state" type="java.lang.String">
         	<column name="state" />
         </property>
-        
+        <property name="photo" type="java.lang.String">
+        	<column name="photo"></column>
+        </property>
+        <property name="data" type="java.lang.String">
+        	<column name="data"></column>
+        </property>
+        <property name="address" type="java.lang.String">
+        	<column name="address"></column>
+        </property>
+        <property name="email" type="java.lang.String">
+        	<column name="email"></column>
+        </property>
+        <property name="hobby" type="java.lang.String">
+        	<column name="hobby"></column>
+        </property>
+        <property name="introduce" type="java.lang.String">
+        	<column name="introduce"></column>
+        </property>
     </class>
 </hibernate-mapping>
