@@ -1,22 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC
 	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
+	<constant name="struts.devMode" value="true"></constant>
+	
 	<package name="quora" namespace="/" extends="struts-default">
-		<interceptors>
-			<interceptor-stack name="bigjavaStack">
-				<interceptor-ref name="defaultStack"></interceptor-ref>
-				<interceptor-ref name="token"></interceptor-ref>
-			</interceptor-stack>
-		</interceptors>
-
-
-		<action name="User1_*" class="org.bigjava.action.UserAction"
+	
+		<action name="Photo_*" class="org.bigjava.action.PhotoUpload" method="{1}">
+			<result name="upload">/homePage.jsp</result>
+			<result name="message">/homePage.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<action name="UN_*" class="org.bigjava.action.UserAction"
 			method="{1}">
+
 			<result name="success">/index1.jsp</result>
 			<result name="error">/login.jsp</result>
 			<result name="invalid.token">/login.jsp</result>
-			<interceptor-ref name="bigjavaStack"></interceptor-ref>
+
+			<result name="success">/views/index1.jsp</result>
+			<result name="homePage">/homePage.jsp</result>
+
 		</action>
 		
 
@@ -29,12 +35,10 @@
 		
 	</package>
 	
-	
-
 	<package name="ajax" extends="json-default" namespace="/">
-		<action name="User_*" class="org.bigjava.action.UserAction"
-			method="{1}">
-			<result type="json"></result>
+		<action name="User_*" class="org.bigjava.action.UserAction" method="{1}">
+			<result type="json" ></result>
 		</action>
 	</package>
+	
 </struts>

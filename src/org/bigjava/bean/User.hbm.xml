@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2019-3-20 23:59:23 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 2019-3-21 21:09:13 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="org.bigjava.bean.User" table="table_user">
+    <class name="org.bigjava.bean.User" table="USER">
         <id name="id" type="java.lang.Integer">
             <column name="ID" />
             <generator class="assigned" />
@@ -17,21 +17,42 @@
         <property name="password" type="java.lang.String">
             <column name="PASSWORD" />
         </property>
+        <property name="age" type="java.lang.String">
+            <column name="AGE" />
+        </property>
         <property name="sex" type="java.lang.String">
             <column name="SEX" />
         </property>
-        <property name="birth" type="java.util.Date">
-            <column name="BIRTH" />
+        <property name="phone" type="java.lang.String">
+            <column name="PHONE" />
         </property>
         <property name="state" type="java.lang.String">
             <column name="STATE" />
         </property>
-        <set name="questions" table="table_user" inverse="false" lazy="true">
+        <property name="photo" type="java.lang.String">
+            <column name="PHOTO" />
+        </property>
+        <property name="data" type="java.lang.String">
+            <column name="DATA" />
+        </property>
+        <property name="address" type="java.lang.String">
+            <column name="ADDRESS" />
+        </property>
+        <property name="email" type="java.lang.String">
+            <column name="EMAIL" />
+        </property>
+        <property name="hobby" type="java.lang.String">
+            <column name="HOBBY" />
+        </property>
+        <property name="introduce" type="java.lang.String">
+            <column name="INTRODUCE" />
+        </property>
+        <set name="questions" table="USER" inverse="false" lazy="true">
             <key>
                 <column name="ID" />
             </key>
             <element type="string">
-                <column name="QUESTIONS_ID" />
+                <column name="QUESTIONS" />
             </element>
         </set>
     </class>
