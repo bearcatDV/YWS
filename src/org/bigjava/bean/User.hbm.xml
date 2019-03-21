@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2019-3-19 23:53:02 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 2019-3-20 23:59:23 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="org.bigjava.bean.User" table="table_user">
         <id name="id" type="java.lang.Integer">
             <column name="ID" />
-            <generator class="native" />
+            <generator class="assigned" />
         </id>
         <property name="username" type="java.lang.String">
             <column name="USERNAME" />
@@ -26,7 +26,7 @@
         <property name="state" type="java.lang.String">
             <column name="STATE" />
         </property>
-        <set name="questions" table="USER" inverse="false" lazy="true">
+        <set name="questions" table="table_user" inverse="false" lazy="true">
             <key>
                 <column name="ID" />
             </key>

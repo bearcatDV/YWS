@@ -34,6 +34,7 @@ public class UserDaoImpl implements UserDao {
 		
 		return user1;
 	}
+	
 	public boolean save(User user){
 		if(user == null){
 			return false;

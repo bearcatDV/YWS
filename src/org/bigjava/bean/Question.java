@@ -4,7 +4,6 @@ public class Question {
 	
 	private Integer id;
 	private String what;
-	private String type;
 	private String fileForm;  // MyEclipse中文件的绝对路径
 	private User user;
 	
@@ -24,14 +23,7 @@ public class Question {
 	public void setWhat(String what) {
 		this.what = what;
 	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
-	}
-	
-	
+
 	public String getFileForm() {
 		return fileForm;
 	}
@@ -50,18 +42,17 @@ public class Question {
 	
 	@Override
 	public String toString() {
-		return "Question [id=" + id + ", what=" + what + ", type=" + type + ", fileForm=" + fileForm + ", user=" + user
-				+ "]";
+		return "Question [id=" + id + ", what=" + what + ", fileForm=" + fileForm + ", user=" + user + "]";
 	}
 	
-	public Question(Integer id, String what, String type, String fileForm, User user) {
+	public Question(Integer id, String what, String fileForm, User user) {
 		super();
 		this.id = id;
 		this.what = what;
-		this.type = type;
 		this.fileForm = fileForm;
 		this.user = user;
 	}
+	
 	
 	
 	

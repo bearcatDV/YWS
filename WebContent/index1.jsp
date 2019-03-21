@@ -1,160 +1,162 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>Insert title here</title>
-		<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-		<script type="text/javascript">
-			$(function(){
-				//当键盘键被松开时发送Ajax获取数据
-				$('#c_text').keyup(function(){
-					var keywords = $(this).val();
-					if (keywords=='') { 
-						$('#word').hide(); 
-						return 
-					};
-					$.ajax({
-						url: 'http://suggestion.baidu.com/su?wd=' + keywords,
-						dataType: 'jsonp',
-						jsonp: 'cb',
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		//当键盘键被松开时发送Ajax获取数据
+		$('#c_text').keyup(function(){
+			var keywords = $(this).val();
+			if (keywords=='') { 
+				$('#word').hide(); 
+				return 
+			};
+			$.ajax({
+				url: 'http://suggestion.baidu.com/su?wd=' + keywords,
+				dataType: 'jsonp',
+				jsonp: 'cb',
 
-						beforeSend:function(){
-							$('#word').append('<div>正在加载。。。</div>');
-						},
-						success:function(data){
-							$('#word').empty().show();
-							if (data.s==''){
-								$('#word').append('<div class="error">Not find  "' + keywords + '"</div>');
-							}
-							$.each(data.s, function(){
-								$('#word').append('<div class="click_work"><strong>'+ this +'</strong></div>');
-							})
-						},
-						error:function(){
-							$('#word').empty().show();
-							$('#word').append('<div class="click_work">Fail "' + keywords + '"</div>');
-						}
+				beforeSend:function(){
+					$('#word').append('<div>正在加载。。。</div>');
+				},
+				success:function(data){
+					$('#word').empty().show();
+					if (data.s==''){
+						$('#word').append('<div class="error">Not find  "' + keywords + '"</div>');
+					}
+					$.each(data.s, function(){
+						$('#word').append('<div class="click_work"><strong>'+ this +'</strong></div>');
 					})
-				})
-				//点击搜索数据复制给搜索框
-				$(document).on('click','.click_work',function(){
-					var word = $(this).text();
-					$('#c_text').val(word);
-					$('#word').hide();
+				},
+				error:function(){
+					$('#word').empty().show();
+					$('#word').append('<div class="click_work">Fail "' + keywords + '"</div>');
+				}
+			})
+		})
+		//点击搜索数据复制给搜索框
+		$(document).on('click','.click_work',function(){
+			var word = $(this).text();
+			$('#c_text').val(word);
+			$('#word').hide();
 
-				});
-				
-				$(".h_left_d").click(function(e){ 
-					$("#i3").toggle(); 
-				    e.stopPropagation();
-				});
-				   
-				$(document).click(function(){ 
-					$("#word").hide();
-					$("#i3").hide(); 
-				}); 
-				   
+		});
+		
+		$(".h_left_d").click(function(e){ 
+			$("#i3").toggle(); 
+		    e.stopPropagation();
+		});
+		   
+		$(document).click(function(){ 
+			$("#word").hide();
+			$("#i3").hide(); 
+		}); 
+		   
 
-				$("#i3").click(function(e){ 
-					e.stopPropagation(); 
-				});
+		$("#i3").click(function(e){ 
+			e.stopPropagation(); 
+		});
+
+	});
+	window.onload=function(){
+	      var obj=document.getElementById("pop");
+		  var head=document.getElementById("head_overlay");
+		  var middle=document.getElementById("middle_overlay");
+		  var foot=document.getElementById("foot_overlay");
+		  
+	      var oBtn=document.getElementById("click");
+	      
+	       oBtn.onclick=function(){
+	        obj.style.display="block";
+	      }   
+	      document.onclick=function(event){
+	        //e对象存在时回返e,当window.event存在时返回event，这样就区分ff,ie
+	        var e=e|| window.event;//兼容ie和非ie的event
+			
+	        var aim=e.srcElement || e.target; //兼容ie和非ie的事件源
+			
+	        //一种规范 ，判断浏览器 e.srcElement(IE下支持), e.target(ff下支持)
+	        if(e.srcElement){
+	         var aim=e.srcElement;
+	          if(aim!=oBtn && aim!=obj && aim!=head && aim!=middle && aim!=foot){
+	            obj.style.display="none";
+	          }
+	        }else{
+	          var aim=e.target;
+	          if(aim!=oBtn && aim!=obj && aim!=head && aim!=middle && aim!=foot){
+	            obj.style.display="none";
+	          }
+	        }
+	      }     
+	    
+		
+		function javaScriptDiv(obj){
+		    var divVal = document.getElementById(obj).innerHTML;
+			document.write("this is："+divVal); 
+		}
+		
+		// 鼠标光标接触事件
+		function over(obj){
+		  obj.style.backgroundColor="white"
+		}
+		
+		//失去鼠标光标事件
+		function out(obj){
+		 obj.style.backgroundColor="#F6F1B3"
+		};
 	
-			});
-			window.onload=function(){
-			      var obj=document.getElementById("pop");
-				  var head=document.getElementById("head_overlay");
-				  var middle=document.getElementById("middle_overlay");
-				  var foot=document.getElementById("foot_overlay");
-				  
-			      var oBtn=document.getElementById("click");
-			      
-			       oBtn.onclick=function(){
-			        obj.style.display="block";
-			      }   
-			      document.onclick=function(event){
-			        //e对象存在时回返e,当window.event存在时返回event，这样就区分ff,ie
-			        var e=e|| window.event;//兼容ie和非ie的event
-					
-			        var aim=e.srcElement || e.target; //兼容ie和非ie的事件源
-					
-			        //一种规范 ，判断浏览器 e.srcElement(IE下支持), e.target(ff下支持)
-			        if(e.srcElement){
-			         var aim=e.srcElement;
-			          if(aim!=oBtn && aim!=obj && aim!=head && aim!=middle && aim!=foot){
-			            obj.style.display="none";
-			          }
-			        }else{
-			          var aim=e.target;
-			          if(aim!=oBtn && aim!=obj && aim!=head && aim!=middle && aim!=foot){
-			            obj.style.display="none";
-			          }
-			        }
-			      }     
-			    }
+		
+		//实现预览功能
+		function preview() {
+			//获取文件框的第一个文件,因为文件有可能上传多个文件,咱这里是一个文件
+			var file = document.getElementById("fileload").files[0];
+			//可以进行一下文件类型的判断
+			var fileType = file.type.split("/")[0];
+			if(fileType != "image") {
+				alert("请上传图片")
+				return;
+			}
+			//图片大小的限制
+			var fileSize = Math.round(file.size/1024/1024);
+			if(fileSize >= 3) {
+				alert("请上传小于少于3M的图片");
+				return;
+			}
+			//获取img对象
+			var img = document.getElementById("image");
+			//建一条文件流来读取图片
+			var reader = new FileReader();
+			//根据url将文件添加的流中
+			reader.readAsDataURL(file);
+			//实现onload接口
+			reader.onload = function(e) {
+				//获取文件在流中url
+				url = reader.result;
 				
-				function javaScriptDiv(obj){
-				    var divVal = document.getElementById(obj).innerHTML;
-					document.write("this is："+divVal); 
-				}
-				
-				// 鼠标光标接触事件
-				function over(obj){
-				  obj.style.backgroundColor="white"
-				}
-				
-				//失去鼠标光标事件
-				function out(obj){
-				 obj.style.backgroundColor="#F6F1B3"
-				};
+				//将url赋值给img的src属性
+				img.src = url;
+			};
+
+
+		};
+		//实现取消上传功能
+		function call() {
+			//将img的src属性赋值为空串
+			document.getElementById("image").src = "";
+			//选择文件框的value属性赋值为空串
 			
-				
-				//实现预览功能
-				function preview() {
-					//获取文件框的第一个文件,因为文件有可能上传多个文件,咱这里是一个文件
-					var file = document.getElementById("fileload").files[0];
-					//可以进行一下文件类型的判断
-					var fileType = file.type.split("/")[0];
-					if(fileType != "image") {
-						alert("请上传图片")
-						return;
-					}
-					//图片大小的限制
-					var fileSize = Math.round(file.size / 1024 / 1024);
-					if(fileSize >= 3) {
-						alert("请上传小于少于3M的图片");
-						return;
-					}
-					//获取img对象
-					var img = document.getElementById("image");
-					//建一条文件流来读取图片
-					var reader = new FileReader();
-					//根据url将文件添加的流中
-					reader.readAsDataURL(file);
-					//实现onload接口
-					reader.onload = function(e) {
-						//获取文件在流中url
-						url = reader.result;
-						
-						//将url赋值给img的src属性
-						img.src = url;
-					};
-	 
-	 
-				};
-				//实现取消上传功能
-				function call() {
-					//将img的src属性赋值为空串
-					document.getElementById("image").src = "";
-					//选择文件框的value属性赋值为空串
-					
-					document.getElementById("fileload").value = "";
-				};
-			
-				
-		</script>
-		<style type="text/css">
+			document.getElementById("fileload").value = "";
+		};
+	
+}
+		
+	</script>
+   
+   <style type="text/css">
 			Body{
 				background-color:#F6F6F6;
 			}
@@ -385,13 +387,13 @@
 				border:1px solid yellow;
 				background:white;
 				width:65%;
-				height:70%;
+				height:89%;
 				margin:0 auto;
 				margin-top:10px;
 			}
 			
 			.middle_left{
-                width: 65%; 
+                width: 69%; 
                 height: 100%; 
                 background-color: #F6F1B3; 
                 float:left;
@@ -399,7 +401,7 @@
 			}
 			
 			.middle_right{
-                width: 34%; 
+                width: 30%; 
                 height: 100%; 
                 background-color: #F6F1B3; 
                 float:left;
@@ -458,8 +460,8 @@
             position: absolute; 
             top: 20%; 
             left: 30%; 
-            width: 35%; 
-            height: 55%; 
+            width: 33%; 
+            height: 65%; 
             padding: 20px;  
             background-color: white; 
             z-index:1002; 
@@ -474,10 +476,11 @@
             text-decoration:none;
         }
 	</style>
-
+   
 </head>
 <body>
-	<div class="total">
+
+     <div class="total">
 		<div class="head">
 			<div class="h_left">
 				<div class="h_left_a">
@@ -527,8 +530,6 @@
 				
 			
 		<div class="middle">
-				
-				<div class="middle">
 				<div class="middle_left"></div>
 				<div class="middle_right">
 				    <div class="m_left_top">
@@ -539,8 +540,6 @@
 				                写想法</a>
 				        </div>
 				    </div>
-				    
-				</div>
 		</div>
 				
 		</div>
@@ -550,26 +549,38 @@
 		<div id="light" class="white_content">
 		  <h1>写想法</h1><h4>ZH写出你的想法</h4>
           
-    <form action="upload"  method="post" enctype="multipart/form-data" style=" margin-left:-60%;" >  
-    
-    <input type="text" name="type" />
+    <form name="fileSave" action="upload"  method="post" enctype="multipart/form-data" style=" margin-align:center;" >  
     <br><br>
-    <textarea name="what" rows="10%" cols="30%"></textarea>
-    <br><br>
+   <textarea name="what" rows="15%" cols="70%" style="margin-top:-15%" value="" onkeyup="ifNull();"></textarea>
+    <br>
     <input type="file" name="myFile" style="display:none;" onchange="preview()" id="fileload" /> 
-   <input type="button" value="浏 览" onclick="myFile.click();" name="get_file" style=" background:white; outline:none; border:none " />
+    <input type="button" value="浏 览" onclick="myFile.click();" name="get_file" style=" margin-left:-75%; background:white; outline:none; border:none " />
 
 		<input type="button" value="x" style="outline:none;" onclick="call();" />
-		<img id="image" style=" width:5%; height:10% "  />
 		
-		<br><br>
-		<input type="submit" value="提交" />
+		<img id="image" width:10%; height:20% />
+
+        <br>
+		<input type="submit" value="提交" id="ifSubmit" disabled="true" style="width:55%; height:70%; margin-left:-10%; margin-top:10%; background-color:#00BFFF; border:none" />
     </form>
+    
+    <!-- 判断textarea是否为空 -->
+    <script language="javascript" type="text/javascript"> 
+       var ifSubmit=document.getElementById("ifSubmit");
+          function ifNull () { 
+               if(document.fileSave.what.value!="") {
+                   ifSubmit.disabled=false; 
+               } else{ 
+            	   ifSubmit.disabled=true; 
+                 }
+          }
+   </script>
+    
         </div> 
         <div id="fade" class="black_overlay">
             <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">
                    <div style="position: absolute; top: 10%; left: 70%; color: white; font-size:30px ">X</div></a>
         </div> 
-		
+    
 </body>
 </html>
