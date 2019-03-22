@@ -8,6 +8,7 @@ import org.bigjava.dao.UserDao;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Component;
 
 import com.opensymphony.xwork2.Result;
 
@@ -151,6 +152,10 @@ public class UserDaoImpl implements UserDao {
 		return list;
 	}
 	 
+	
+	public void add(User user){
+		
+	}
 	
 
 }

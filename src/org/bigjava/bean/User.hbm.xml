@@ -8,6 +8,7 @@
             <column name="id" />
             <generator class="native" />
         </id>
+
         <property name="username" type="java.lang.String"></property>
  
 
@@ -53,6 +54,15 @@
                 <column name="questions" />
             </element>
         </set>
+
         
+        
+       <set name="articles" cascade="all">
+        	<key>
+        		<column name="user_id"></column><!--  链接的外键 -->
+        	</key>
+        	<one-to-many class="org.bigjava.bean.Article"/><!-- 一对多指向Article文章类-->
+        </set> 
+
     </class>
 </hibernate-mapping>

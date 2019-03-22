@@ -487,8 +487,11 @@ body {
 					</div>
 				</div>
 			</div>
-
-		</div>
+					
+		</div>	
+				
+				
+			
 
 		<div class="middle">
 			<div class="middle_left">
@@ -517,7 +520,7 @@ body {
 			</div>
 			<div class="middle_right">
 				<div class="mr_top">
-					<a href="#">写回答</a> <a href="#">写文章</a>
+					<a href="#">写回答</a> <a href="views/write.jsp">写文章</a>
 				</div>
 			</div>
 

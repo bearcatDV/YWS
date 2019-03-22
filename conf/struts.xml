@@ -3,9 +3,15 @@
 	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
-	<constant name="struts.devMode" value="true"></constant>
-	
-	<package name="quora" namespace="/" extends="struts-default">
+
+<constant name="struts.devMode" value="true" />			<!-- 开发者模式启动  -->
+
+ 
+	<package name="hh" extends="struts-default" namespace="/">
+		
+		<action name="Article_*" class="articleAction" method="{1}">
+			<result name="write" >/views/gameOver.jsp</result>
+		</action>
 	
 		<action name="Photo_*" class="org.bigjava.action.PhotoUpload" method="{1}">
 			<result name="upload">/homePage.jsp</result>
@@ -37,6 +43,8 @@
 		<action name="User_*" class="org.bigjava.action.UserAction" method="{1}">
 			<result type="json" ></result>
 		</action>
+		
+		
 	</package>
 	
 </struts>

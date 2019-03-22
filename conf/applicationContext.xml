@@ -23,6 +23,7 @@
      </bean>
      
     <bean name="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+
         <property name="dataSource" ref="dataSource"></property>
         <property name="mappingLocations" value="classpath:org/bigjava/bean/*.hbm.xml"></property>
         <property name="hibernateProperties">
@@ -56,6 +57,13 @@
    	</bean>
    	<bean name="userAction" class="org.bigjava.action.UserAction" scope="prototype">
    		<property name="userDao" ref="userDao"></property>
+   	</bean>
+   	
+   	<bean name="articleDao" class="org.bigjava.dao.impl.ArticleDaoImpl">
+   		<property name="sessionFactory" ref="sessionFactory"></property>
+   	</bean>
+   	<bean name="articleAction" class="org.bigjava.action.ArticleAction" scope="prototype">
+   		<property name="articleDao" ref="articleDao"></property>
    	</bean>
    	
    	<bean name="photoUpload" class="org.bigjava.action.PhotoUpload">

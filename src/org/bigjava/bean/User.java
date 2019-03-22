@@ -4,10 +4,9 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+
 public class User {
-
-
-
+	
 	private Integer id; // id
 	private String username; // 用户名
 	private String account; // 账号
@@ -22,7 +21,9 @@ public class User {
 	private String email;//邮件
 	private String hobby;//爱好
 	private String introduce;//个人简介
+
 	private Set questions = new HashSet();
+	private Set<Article> articles = new HashSet<Article>();//文章
 	public Integer getId() {
 		return id;
 	}
@@ -107,14 +108,35 @@ public class User {
 	public void setIntroduce(String introduce) {
 		this.introduce = introduce;
 	}
+	
+	public Set<Article> getArticles() {
+		return articles;
+	}
+
+	public void setArticles(Set<Article> articles) {
+		this.articles = articles;
+	}
+	
+	
+	
+
 	public Set getQuestions() {
+
 		return questions;
 	}
 	public void setQuestions(Set questions) {
 		this.questions = questions;
+
 	}
+
+
+	public User() {}
+
+
 	public User(Integer id, String username, String account, String password, String age, String sex, String phone,
-			String state, String photo, String data, String address, String email, String hobby, String introduce, Set questions) {
+			String state, String photo, String data, String address, String email, String hobby, String introduce, Set questions,
+			Set<Article> articles) {
+
 		super();
 		this.id = id;
 		this.username = username;
@@ -131,20 +153,17 @@ public class User {
 		this.hobby = hobby;
 		this.introduce = introduce;
 		this.questions = questions;
-		
+		this.articles = articles;
+
 	}
-	
-	public User() {}
 	
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", account=" + account + ", password=" + password
 				+ ", age=" + age + ", sex=" + sex + ", phone=" + phone + ", state=" + state + ", photo=" + photo
 				+ ", data=" + data + ", address=" + address + ", email=" + email + ", hobby=" + hobby + ", introduce="
-				+ introduce +", questions="+ questions +"]";
+				+ introduce +", questions" +questions+ ", articles=" + articles + "]";
 	}
-	
-	
 	
 }
 	

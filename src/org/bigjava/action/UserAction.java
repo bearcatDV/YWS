@@ -29,6 +29,8 @@ public class UserAction extends ActionSupport implements RequestAware,ModelDrive
 	private UserDao userDao;
 	Map<String, Object> request;
 	private String result;
+	
+	
 	private String result1;
 	private String rePassword; //密码确认验证
 	Matcher matcher=null;
@@ -270,5 +272,7 @@ public class UserAction extends ActionSupport implements RequestAware,ModelDrive
 		}
 		return user;
 	}
+	
+
 	
 }
