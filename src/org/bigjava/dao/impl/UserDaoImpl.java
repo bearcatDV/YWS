@@ -5,6 +5,7 @@ import org.bigjava.dao.UserDao;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Component;
 
 public class UserDaoImpl implements UserDao {
 	
@@ -57,6 +58,10 @@ public class UserDaoImpl implements UserDao {
 		String hql="delete User as u WHERE u.id=?";
 		Query query=(Query) getSession().createCriteria(hql);
 		 
+	}
+	
+	public void add(User user){
+		
 	}
 	
 

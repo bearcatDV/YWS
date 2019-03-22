@@ -26,6 +26,12 @@
         <property name="state" type="java.lang.String">
         	<column name="state" />
         </property>
+        <set name="articles" cascade="all">
+        	<key>
+        		<column name="user_id"></column><!-- 链接的外键 -->
+        	</key>
+        	<one-to-many class="org.bigjava.bean.Article"/><!-- 一对多指向Article文章类 -->
+        </set>
         
     </class>
 </hibernate-mapping>

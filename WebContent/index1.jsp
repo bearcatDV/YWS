@@ -399,7 +399,9 @@
 				
 			
 		<div class="middle">
-				
+				<div class="write">
+					<a href="views/write.jsp">写文章</a>
+				</div>
 		</div>
 		
 	</div>

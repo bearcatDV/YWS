@@ -21,6 +21,7 @@ public class UserAction extends ActionSupport implements RequestAware,ModelDrive
 	private Map<String, Object> request;
 	private String result;
 	
+	
 	public String getResult() {
 		return result;
 	}
@@ -80,5 +81,7 @@ public class UserAction extends ActionSupport implements RequestAware,ModelDrive
 		}
 		return user;
 	}
+	
+
 	
 }

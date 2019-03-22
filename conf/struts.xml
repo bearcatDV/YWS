@@ -2,29 +2,16 @@
 	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
-	<package name="quora" namespace="/" extends="struts-default">
-		<interceptors>
-			<interceptor-stack name="bigjavaStack">
-				<interceptor-ref name="defaultStack"></interceptor-ref>
-				<interceptor-ref name="token"></interceptor-ref>
-			</interceptor-stack>
-		</interceptors>
 
+<constant name="struts.devMode" value="true" />			<!-- 开发者模式启动  -->
 
-		<action name="User1_*" class="org.bigjava.action.UserAction"
-			method="{1}">
-			<result name="success">/WEB-INF/views/success.jsp</result>
-			<result name="error">/login.jsp</result>
-			<result name="invalid.token">/login.jsp</result>
-			<interceptor-ref name="bigjavaStack"></interceptor-ref>
+ 
+	<package name="hh" extends="struts-default" namespace="/">
+		
+		<action name="Article_*" class="articleAction" method="{1}">
+			<result name="write" >/views/gameOver.jsp</result>
 		</action>
+		
+		
 	</package>
-	
-
-	<package name="ajax" extends="json-default" namespace="/">
-		<action name="User_*" class="org.bigjava.action.UserAction"
-			method="{1}">
-			<result type="json"></result>
-		</action>
-	</package>
-</struts>
+</struts>    
