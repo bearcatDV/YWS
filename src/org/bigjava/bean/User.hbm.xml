@@ -45,13 +45,14 @@
         
         <property name="introduce" type="java.lang.String"></property>
         
-        <!-- <set name="questions" table="user" inverse="false" lazy="true">
+        <set name="questions" table="user" inverse="false" lazy="false">
             <key>
                 <column name="ID" />
             </key>
             <element type="string">
                 <column name="questions" />
             </element>
-        </set> -->
+        </set>
+        
     </class>
 </hibernate-mapping>

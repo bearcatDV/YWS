@@ -22,7 +22,7 @@ public class User {
 	private String email;//邮件
 	private String hobby;//爱好
 	private String introduce;//个人简介
-	/*private Set questions = new HashSet(0);*/
+	private Set questions = new HashSet();
 	public Integer getId() {
 		return id;
 	}
@@ -107,14 +107,14 @@ public class User {
 	public void setIntroduce(String introduce) {
 		this.introduce = introduce;
 	}
-	/*public Set getQuestions() {
+	public Set getQuestions() {
 		return questions;
 	}
 	public void setQuestions(Set questions) {
 		this.questions = questions;
-	}*/
+	}
 	public User(Integer id, String username, String account, String password, String age, String sex, String phone,
-			String state, String photo, String data, String address, String email, String hobby, String introduce) {
+			String state, String photo, String data, String address, String email, String hobby, String introduce, Set questions) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -130,6 +130,7 @@ public class User {
 		this.email = email;
 		this.hobby = hobby;
 		this.introduce = introduce;
+		this.questions = questions;
 		
 	}
 	
@@ -140,7 +141,7 @@ public class User {
 		return "User [id=" + id + ", username=" + username + ", account=" + account + ", password=" + password
 				+ ", age=" + age + ", sex=" + sex + ", phone=" + phone + ", state=" + state + ", photo=" + photo
 				+ ", data=" + data + ", address=" + address + ", email=" + email + ", hobby=" + hobby + ", introduce="
-				+ introduce +"]";
+				+ introduce +", questions="+ questions +"]";
 	}
 	
 	

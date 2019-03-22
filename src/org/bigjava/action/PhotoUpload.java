@@ -1,11 +1,9 @@
 package org.bigjava.action;
 
 import java.io.File;
-import java.io.OutputStream;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.jasper.tagplugins.jstl.core.Out;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.RequestAware;
 import org.bigjava.bean.User;
@@ -22,7 +20,7 @@ public class PhotoUpload extends ActionSupport implements ModelDriven<User>,Requ
 	private String myFileContentType;
 	private String myFileFileName;
 	private String destPath;
-	private static OutputStream out;
+
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
 	}

@@ -1,5 +1,7 @@
 package org.bigjava.action;
 
+import java.util.List;
+
 /**
  * test
  */
@@ -9,7 +11,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.struts2.interceptor.RequestAware;
-
+import org.bigjava.bean.Question;
 import org.bigjava.bean.User;
 import org.bigjava.dao.UserDao;
 
@@ -17,10 +19,13 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
 
+
+
 public class UserAction extends ActionSupport implements RequestAware,ModelDriven<User>{
  
 	private static final long serialVersionUID = 7622329058096927609L;
 	private User user;
+	private Question question;
 	private UserDao userDao;
 	Map<String, Object> request;
 	private String result;
@@ -37,6 +42,15 @@ public class UserAction extends ActionSupport implements RequestAware,ModelDrive
 		return user;
 	}
 	
+	
+	public Question getQuestion() {
+		return question;
+	}
+
+	public void setQuestion(Question question) {
+		this.question = question;
+	}
+
 	public void setUser(User user) {
 		this.user = user;
 	}
@@ -98,7 +112,6 @@ public class UserAction extends ActionSupport implements RequestAware,ModelDrive
 		if(password.length()<6 || password.length()>16){
 			System.out.println("验证四");
 			result="密码不少于六位或不多于十六位";
-
 			return SUCCESS;
 		}
 		
@@ -220,6 +233,7 @@ public class UserAction extends ActionSupport implements RequestAware,ModelDrive
 		user.setAccount(account);
 		System.out.println(account);
 		user.setAccount(account);
+		user.setPhoto("image/photo.jpg");
 		user.setState("1");
 		userDao.save(user);
 		result="注册成功！您的随机账号为"+account+",请去登录页面登录";
@@ -227,7 +241,13 @@ public class UserAction extends ActionSupport implements RequestAware,ModelDrive
 	}
 	//登录成功
 	public String login_ok(){
-		System.out.println(user);
+		System.out.println("login_ok");
+		List<Question> list=userDao.getAllQuestions();
+		
+		if(list != null){
+			request.put("questions", list);
+		}
+		System.out.println("list.get"+list.get(0).getWhat());
 		request.put("user", user);
 		return SUCCESS;
 	}

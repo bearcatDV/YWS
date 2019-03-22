@@ -494,14 +494,16 @@ body {
 			<div class="middle_left">
 
 				<%
-					for (int i = 0; i < 3; i++) {
+					List<Question> list = (List)request.getAttribute("questions");
+					System.out.println("index1.jsp"+list);
+					for (int i = 0; i < list.size(); i++) {
 				%>
 				<div id="middle_top">
 					<div class="meddle_title">
-						<p>标题</p>
+						<p><%=list.get(i).getWhat() %></p>
 					</div>
 					<div class="meddle_content">
-						某某人说：xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx打发打发发色二等分发送到发送到发送到发发生的发生发生的发生发生的发生
+						<%=list.get(i).getUser().getUsername() %>说：xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx打发打发发色二等分发送到发送到发送到发发生的发生发生的发生发生的发生
 						打算发到付发生的发生发送到发飞洒地方飞洒地方是打发打发发送到发染发地方染发地方人打算发达人法地生发送到发飞洒地方飞洒地方
 						是打发打发发送到发染发地方染发地方人打算发达人法地</div>
 					<button type="button" class="mz_button">阅读全文</button>
