@@ -1,0 +1,193 @@
+
+body {
+	padding: 0;
+	margin: 0;
+	
+	font-family: 'Open Sans', sans-serif;
+}
+body a {
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	-ms-transition: 0.5s all;
+	text-decoration: none;
+}
+body a:hover {
+	text-decoration: none;
+}
+body a:focus, a:hover {
+	text-decoration: none;
+}
+input[type="button"], input[type="submit"] {
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	-ms-transition: 0.5s all;
+}
+h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+	padding: 0;
+	font-family: 'Amita', cursive;
+}
+p {
+	margin: 0;
+	font-size:1em;
+	font-family: 'Ubuntu', sans-serif;
+}
+ul {
+	margin: 0;
+	padding: 0;
+}
+label {
+	margin: 0;
+}
+a:focus, a:hover {
+	text-decoration: none;
+	outline: none;
+}
+/*-- //Reset-Code --*/
+/*-- banner --*/
+.w3-banner-top{
+    background: url(../image/home.jpg) no-repeat 0px 0px;
+    background-size: 100%;
+	min-height:750px;
+	position: relative;
+}
+.agileinfo-dot{
+    background: url(../image/dott.png)repeat 0px 0px;
+    background-size: 2px;
+    -webkit-background-size: 2px;
+    -moz-background-size: 2px;
+    -o-background-size: 2px;
+    -ms-background-size: 2px;
+	min-height: 725px;
+}
+.col-md-6.w3-banner-grid-left {
+    width: 50%;
+    float: left;
+}
+.col-md-6.w3-banner-grid-right{
+    width: 50%;
+    float: left;
+}
+.w3-banner-img {
+    text-align: center;
+}
+ul.address {
+    margin-top: 1.5em;
+     border-top: 2px dotted #00bcd4;
+    padding-top: 0.5em;
+}
+ul.address li ul.agileits-address-text li {
+    display: inline-block;
+    font-size: 1em;
+    color:rgba(255, 255, 255, 0.76);
+    margin-top: 1em;
+    font-weight: 600;
+    font-family: 'Text Me One', sans-serif;
+}
+ul.address li ul.agileits-address-text li:nth-child(1) {
+    width: 20%;
+}
+.w3-banner-grids {
+    padding: 9em 0 0 0;
+}
+.w3-banner-img img {
+    width: 133px;
+    height: 133px;
+    border-radius: 50%;
+}
+.w3-right-addres-1 li {
+    list-style-type: none;
+}
+.w3-banner-text p {
+    width: 50%;
+}
+ul.agileits-address-text li a {
+    color:rgba(255, 255, 255, 0.76);
+}
+.w3-banner-img h3 {
+    color: #fff;
+    font-size: 2.8em;
+    font-weight: 600;
+    text-transform: uppercase;
+        letter-spacing:1px;
+   font-family: 'Raleway', sans-serif;
+}
+.w3-banner-img p {
+    color: #ffc53e;
+    font-size: 1em;
+    line-height: 1.5em;
+    text-transform: uppercase;
+	letter-spacing: 2px;
+}
+.w3-banner-grid-right h3 {
+  font-size: 3em;
+    color: #fff;
+    letter-spacing: 2px;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+.w3-banner-grid-right p {
+    color:#c5c2c2;
+    font-size: 1em;
+    line-height: 1.8em;
+    letter-spacing: 1px;
+}
+ul.agileits-address-text li span {
+    margin: 0.2em;
+    color: #d9edf7;
+}
+.w3-banner-img {
+  border: 5px solid rgba(238, 238, 238, 0.53);
+    width: 400px;
+    height: 400px;
+    padding: 63px;
+    margin: 0 auto;
+}
+li.agile-it-adress-left b {
+    color: #fff;
+}
+/*-- button-effect --*/
+.thim-click-to-bottom {
+    position: absolute;
+    bottom: 7%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 40px;
+    line-height: 40px;
+    -webkit-animation: bounce 2s infinite ease-in-out;
+}
+.thim-click-to-bottom i {
+    color: #fff;
+    padding: 20px 10px;
+    border: 1px solid;
+    border-radius: 20px;
+	font-size: 15px;
+}
+@-webkit-keyframes bounce {
+	0%, 20%, 60%, 100%  { -ms-transform: translateY(0); }
+	0%, 20%, 60%, 100%  { -o-transform: translateY(0); }
+	0%, 20%, 60%, 100%  { -moz-transform: translateY(0); }
+	0%, 20%, 60%, 100%  { -webkit-transform: translateY(0); }
+    40%  { -webkit-transform: translateY(-20px); }
+	80% { -webkit-transform: translateY(-10px); }
+}
+ .title-w3ls h4,.w3ls-heading h3,.w3-gallery-head h3,.w3-about-head h3{
+	font-size:3em;
+    color:#00bcd4;
+	font-weight: 600;
+	text-align:center;
+	text-transform:uppercase;
+	letter-spacing: 2px;
+    font-family: 'Poppins', sans-serif;
+}
+.w3-about-grids{
+	border:1px solid red;
+	background-color:white;
+	width:75%;
+	height:640px;
+	margin:0 auto;
+}

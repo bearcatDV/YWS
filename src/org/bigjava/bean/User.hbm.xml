@@ -1,37 +1,66 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2019-3-8 10:17:21 by Hibernate Tools 3.5.0.Final -->
+<!-- Generated 2019-3-21 21:09:13 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="org.bigjava.bean.User" table="user">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
             <generator class="native" />
         </id>
-        <property name="username" type="java.lang.String">
-            <column name="username" />
-        </property>
-        <property name="password" type="java.lang.String">
-            <column name="password" />
-        </property>
-        <property name="account" type="java.lang.String">
-        	<column name="account" />
-        </property>
-        <property name="sex" type="java.lang.String">
-            <column name="sex" />
-        </property>
-        <property name="birth" type="date">
-            <column name="birth" />
-        </property>
-        <property name="state" type="java.lang.String">
-        	<column name="state" />
-        </property>
-        <set name="articles" cascade="all">
-        	<key>
-        		<column name="user_id"></column><!-- 链接的外键 -->
-        	</key>
-        	<one-to-many class="org.bigjava.bean.Article"/><!-- 一对多指向Article文章类 -->
-        </set>
+
+        <property name="username" type="java.lang.String"></property>
+ 
+
+        <property name="account" type="java.lang.String"></property>
+
+
+        <property name="password" type="java.lang.String"></property>
+
+
+        <property name="age" type="java.lang.String"></property>
+
+
+        <property name="sex" type="java.lang.String"></property>
+
+
+        <property name="phone" type="java.lang.String"></property>
+
+
+        <property name="state" type="java.lang.String"></property>
+
+
+        <property name="photo" type="java.lang.String"></property>
+
+
+        <property name="data" type="java.lang.String"></property>
+
+
+        <property name="address" type="java.lang.String"></property>
+
+
+        <property name="email" type="java.lang.String"></property>
+
+
+        <property name="hobby" type="java.lang.String"></property>
         
+        <property name="introduce" type="java.lang.String"></property>
+        
+        <!-- <set name="questions" table="user" inverse="false" lazy="true">
+            <key>
+                <column name="ID" />
+            </key>
+            <element type="string">
+                <column name="questions" />
+            </element>
+        </set> -->
+        
+        
+       <!--  <set name="articles" cascade="all">
+        	<key>
+        		<column name="user_id"></column>链接的外键
+        	</key>
+        	<one-to-many class="org.bigjava.bean.Article"/>一对多指向Article文章类
+        </set> -->
     </class>
 </hibernate-mapping>

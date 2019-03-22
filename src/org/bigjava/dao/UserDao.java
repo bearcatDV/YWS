@@ -5,12 +5,18 @@ import org.bigjava.bean.User;
 public interface UserDao {
 	
 	/**
-	 * 登陆
+	 * 通过用户名登陆
 	 * @param user
 	 * @return
 	 */
-	public User login(User user);
+	public User loginByUsername(User user);
 	
+	/**
+	 * 通过账号登录
+	 * @param user
+	 * @return
+	 */
+	public User loginByAccount(User user);
 	/**
 	 * 注册
 	 * @param user
@@ -29,4 +35,27 @@ public interface UserDao {
 	 * @param user
 	 */
 	public void delete(User user);
+	
+	/**
+	 * 通过用户名得到用户（校验用户是否存在）
+	 * @param username
+	 * @return
+	 */
+	public User getUserByUsername(String username);
+	
+	/**
+	 * 通过ID获得用户
+	 * @param id
+	 * @return
+	 */
+	public User getUserById(Integer id);
+	
+	/**
+	 * 存入头像
+	 * @param user
+	 * @return
+	 */
+	public boolean savaPhotoById(User user);
+	
+	public boolean savaMessageById(User user);
 }
