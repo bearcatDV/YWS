@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	import="java.util.*,org.bigjava.bean.*" pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
@@ -121,6 +120,49 @@
 					});
 					
 				});
+				
+				//实现预览功能
+		function preview() {
+			//获取文件框的第一个文件,因为文件有可能上传多个文件,咱这里是一个文件
+			var file = document.getElementById("fileload").files[0];
+			//可以进行一下文件类型的判断
+			var fileType = file.type.split("/")[0];
+			if(fileType != "image") {
+				alert("请上传图片")
+				return;
+			}
+			//图片大小的限制
+			/*var fileSize = Math.round(file.size/1024/1024);
+			if(fileSize >= 3) {
+				alert("请上传小于少于3M的图片");
+				return;
+			} */
+			//获取img对象
+			var img = document.getElementById("image");
+			//建一条文件流来读取图片
+			var reader = new FileReader();
+			//根据url将文件添加的流中
+			reader.readAsDataURL(file);
+			//实现onload接口
+			reader.onload = function(e) {
+				//获取文件在流中url
+				url = reader.result;
+				
+				//将url赋值给img的src属性
+				img.src = url;
+			};
+
+
+		};
+		//实现取消上传功能
+		function call() {
+			//将img的src属性赋值为空串
+			document.getElementById("image").src = "";
+			//选择文件框的value属性赋值为空串
+			
+			document.getElementById("fileload").value = "";
+		};
+	
 			
 		</script>
 <style type="text/css">
@@ -435,10 +477,72 @@ body {
 }
 
 .mr_top {
-	border: 1px solid red;
-	height: 60px;
-	width: 100%;
+	            width: 100%; 
+                height: 10%; 
+                background-color: yellow; 
+                float:top;
 }
+
+.m_left{
+                width: 30%; 
+                height: 100%; 
+                background-color: yellow; 
+                float:left;
+            
+			}
+			
+			.m_middle{
+                width: 30%; 
+                height: 100%; 
+                background-color: red; 
+                float:left;
+                margin-left:5%
+            
+			}
+			
+			.m_right{
+                width: 30%; 
+                height: 100%; 
+                background-color: yellow; 
+                float:right;
+            
+			}
+			
+			.black_overlay{ 
+            display: none; 
+            position: absolute; 
+            top: 0%; 
+            left: 0%; 
+            width: 100%; 
+            height: 100%; 
+            background-color: black; 
+            z-index:1001; 
+            -moz-opacity: 0.8; 
+            opacity:.80; 
+            filter: alpha(opacity=88); 
+        } 
+        .white_content { 
+            display: none; 
+            position: absolute; 
+            top: 15%; 
+            left: 32%; 
+            width: 33%; 
+            height: 65%; 
+            padding: 20px;  
+            background-color: white; 
+            z-index:1002; 
+            overflow: auto; 
+        } 
+        
+        textarea{
+            resize: none;
+        }
+	    
+	    a:link,a:visited{
+            text-decoration:none;
+        }
+		
+
 </style>
 
 </head>
@@ -515,13 +619,57 @@ body {
 			</div>
 			<div class="middle_right">
 				<div class="mr_top">
-					<a href="#">写回答</a> <a href="#">写文章</a>
+					<div class="m_left"></div>
+				        <div class="m_middle"></div>
+				        <div class="m_right">
+				        <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">
+				                写想法</a>
+				        </div>
 				</div>
 			</div>
 
 		</div>
 
 	</div>
+	
+		<div id="light" class="white_content">
+		  <h1 style="text-align:center;margin-top:-3%">写想法</h1>
+		  <h4 style="text-align:center">ZH写出你的想法</h4>
+          
+    <form name="fileSave" action="upload"  method="post" enctype="multipart/form-data" style=" margin-align:center;" >  
+    <br><br>
+   <textarea name="what" rows="15%" cols="70%" style=" margin-left: 2.5%; margin-top:-5%" value="" onkeyup="ifNull();"></textarea>
+    <br>
+    <input type="file" name="myFile" style="display:none;" onchange="preview()" id="fileload" /> 
+    
+   <!--  <input type="button" value="浏 览" onclick="myFile.click();" name="get_file" style="background:white; outline:none; border:none " />--> 
+   
+    <button onclick="myFile.click();" name="get_file" style="margin-top:; background:white; outline:none; border:none; position: absolute; top:70%; left:5%;" ><a href="#">上传图片</a></button>
+    
+		<input type="button" value="x" style="outline:none;" onclick="call();" />
+		
+		<img id="image" style="width:6%; height:5%; border:none;  position: absolute; left:6%; top:75%;" />
+
+		<input type="submit" value="提交" id="ifSubmit" disabled="true" style="width:55%; height:40px; margin-left:25%; margin-top:20%; background-color:#00BFFF; border:none" />
+    </form>
+    
+    <!-- 判断textarea是否为空 -->
+    <script language="javascript" type="text/javascript"> 
+       var ifSubmit=document.getElementById("ifSubmit");
+          function ifNull () { 
+               if(document.fileSave.what.value!="") {
+                   ifSubmit.disabled=false; 
+               } else{ 
+            	   ifSubmit.disabled=true; 
+                 }
+          }
+   </script>
+    
+        </div> 
+        <div id="fade" class="black_overlay">
+            <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">
+                   <div style="position: absolute; top: 10%; left: 70%; color: white; font-size:30px ">X</div></a>
+        </div> 
 
 </body>
 </html>

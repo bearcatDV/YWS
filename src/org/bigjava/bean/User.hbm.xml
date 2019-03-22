@@ -1,57 +1,58 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2019-3-21 21:09:13 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 2019-3-22 10:04:41 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="org.bigjava.bean.User" table="user">
+    <class name="org.bigjava.bean.User" table="table_user">
         <id name="id" type="java.lang.Integer">
-            <column name="id" />
+            <column name="ID" />
             <generator class="native" />
         </id>
-        <property name="username" type="java.lang.String"></property>
- 
-
-        <property name="account" type="java.lang.String"></property>
-
-
-        <property name="password" type="java.lang.String"></property>
-
-
-        <property name="age" type="java.lang.String"></property>
-
-
-        <property name="sex" type="java.lang.String"></property>
-
-
-        <property name="phone" type="java.lang.String"></property>
-
-
-        <property name="state" type="java.lang.String"></property>
-
-
-        <property name="photo" type="java.lang.String"></property>
-
-
-        <property name="data" type="java.lang.String"></property>
-
-
-        <property name="address" type="java.lang.String"></property>
-
-
-        <property name="email" type="java.lang.String"></property>
-
-
-        <property name="hobby" type="java.lang.String"></property>
-        
-        <property name="introduce" type="java.lang.String"></property>
-        
-        <!-- <set name="questions" table="user" inverse="false" lazy="true">
+        <property name="username" type="java.lang.String">
+            <column name="USERNAME" />
+        </property>
+        <property name="account" type="java.lang.String">
+            <column name="ACCOUNT" />
+        </property>
+        <property name="password" type="java.lang.String">
+            <column name="PASSWORD" />
+        </property>
+        <property name="age" type="java.lang.String">
+            <column name="AGE" />
+        </property>
+        <property name="sex" type="java.lang.String">
+            <column name="SEX" />
+        </property>
+        <property name="phone" type="java.lang.String">
+            <column name="PHONE" />
+        </property>
+        <property name="state" type="java.lang.String">
+            <column name="STATE" />
+        </property>
+        <property name="photo" type="java.lang.String">
+            <column name="PHOTO" />
+        </property>
+        <property name="data" type="java.lang.String">
+            <column name="DATA" />
+        </property>
+        <property name="address" type="java.lang.String">
+            <column name="ADDRESS" />
+        </property>
+        <property name="email" type="java.lang.String">
+            <column name="EMAIL" />
+        </property>
+        <property name="hobby" type="java.lang.String">
+            <column name="HOBBY" />
+        </property>
+        <property name="introduce" type="java.lang.String">
+            <column name="INTRODUCE" />
+        </property>
+       
+        <set name="questions" cascade="all">
             <key>
-                <column name="ID" />
+                <column name="user_id" /><!-- 链接的外键 -->
             </key>
-            <element type="string">
-                <column name="questions" />
-            </element>
-        </set> -->
+               <one-to-many class="org.bigjava.bean.Question" /><!-- 一对多指向 Question -->
+        </set>
     </class>
 </hibernate-mapping>
