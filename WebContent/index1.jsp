@@ -142,6 +142,10 @@
 					
 					
 				});
+				function fwb(){
+					var a = $(this).();
+					alert("a"+a);
+				}
 			
 		</script>
 <style type="text/css">
@@ -573,10 +577,12 @@ $(function(){
 						<div id='txtDiv' style='border:1px solid #cccccc; height:240px;' class="txt_class<%=i %>">
 							<p class="txt_content">您想对<strong><%=list.get(i).getUser().getUsername() %></strong>说:</p>
 								<input type="hidden" name="comment.content" id="txtDiv_hi" />
-								<input type="hidden" value="<%=request.getParameter("id") %>" name="user_id" /> 
+								<input type="hidden" value="<%=request.getParameter("id") %>" name="user_id" />
 								<input type="hidden" value="<%=list.get(i).getId() %>" name="article_id" />
+								
 						</div>
-						<input type="submit" value="提交" id="txtDiv_sm" />
+						<input type="hidden" value="0" class="fwb" />
+						<input type="submit" value="提交" id="txtDiv_sm" onclick="fwb()"/>
 					</form>
 					<hr style="border: none; border-top: #ccc dashed 2px;" />
 				</div>
