@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2019-3-24 22:13:37 by Hibernate Tools 3.4.0.CR1 -->
+
 <hibernate-mapping>
     <class name="org.bigjava.bean.User" table="table_user">
         <id name="id" type="java.lang.Integer">
@@ -9,6 +9,7 @@
             <generator class="native" />
         </id>
         <property name="username" type="java.lang.String">
+
             <column name="USERNAME" />
         </property>
         <property name="account" type="java.lang.String">
@@ -51,5 +52,20 @@
             <key column="userId"></key>  
             <one-to-many class="org.bigjava.bean.Question"></one-to-many>  
         </set>  
+        
+        <set name="articles" table="article" inverse="false" lazy="false">
+            <key>
+                <column name="USER_ID" />
+            </key>
+            <one-to-many class="org.bigjava.bean.Article" />
+        </set>
+       
+        <set name="comments" table="comment">
+        	<key>
+        		<column name="USER_ID"></column>
+        	</key>
+        	<one-to-many class="org.bigjava.bean.Comment"/>
+        </set>
+
     </class>
 </hibernate-mapping>

@@ -1,10 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*,org.bigjava.bean.*"%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>Insert title here</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>知乎首页</title>
+<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="css/wangEditor-1.1.0-min.css">
+
 <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src='js/wangEditor-1.1.0-min.js'></script>
 <script type="text/javascript">
 			$(function(){
 				//当键盘键被松开时发送Ajax获取数据
@@ -88,7 +95,7 @@
 			          }
 			        }
 			      }     
-			}
+			
 				
 				function javaScriptDiv(obj){
 				    var divVal = document.getElementById(obj).innerHTML;
@@ -110,17 +117,34 @@
 					$(".mz_button").click(function(){
 						var a = $(this).text();
 						if(a == "阅读全文"){
-							$(this).prev().attr("class","meddle_content1");
-							$(this).text("收起");
+							$('.meddle_content').attr("class","meddle_content1");
+							$(this).text("收起全文");
 						}
 						if(a != "阅读全文"){
-							$(this).prev().attr("class","meddle_content");
+							$('.meddle_content1').attr("class","meddle_content");
 							$(this).text("阅读全文");
 						}
 					});
+					$(".pl_button").click(function(){
+						var a = $(this).text();
+						alert("a"+a);
+						if(a == "评论"){
+							$(this).parent().next().children().show();
+							var $editor = $(this).parent().next().children().wangEditor();
+							
+							$(this).text("收起评论");
+						}
+						if(a != "评论"){
+							$(this).parent().next().children().hide();
+							
+							$('#txtDiv_sm').hide();
+							$(this).text("评论");
+						}
+					});
+					
 					
 				});
-				
+	
 				//实现预览功能
 		function preview() {
 			//获取文件框的第一个文件,因为文件有可能上传多个文件,咱这里是一个文件
@@ -173,12 +197,12 @@
        		    ifButton.display="block";
        	  }
          }
+
+				}
+
 			
 		</script>
 <style type="text/css">
-body {
-	
-}
 
 .total {
 	border: 1px solid red;
@@ -416,18 +440,19 @@ body {
 }
 
 .middle {
-	border: 1px solid blue;
+	border: 1px solid yellow;
 	width: 65%;
-	height: 600px;
+	height: auto !important;
 	margin: 0 auto;
 	margin-top: 10px;
+	float:;
 }
 
 .middle_left {
 	border: 1px solid red;
 	background: white;
 	width: 70%;
-	height: 600px;
+	height: auto !important;
 	float: left;
 }
 
@@ -553,7 +578,46 @@ body {
         }
 		
 
+
+#txtDiv{
+	display: none;
+	margin-top:5px;
+}
+
+
+#txtDiv_sm{
+	display: none;
+}
+.content_img{
+	background-size:contain|cover;
+	width:99%;
+	height:100%;
+}
+t
 </style>
+
+<script type="text/javascript">
+$(function(){
+    
+
+    //一句话，即可把一个div 变为一个富文本框！o(∩_∩)o 
+     
+
+ 
+});
+$(function(){
+	$('#txtDiv_sm').click(function(){
+		var v_u = $(".txt_content").text();
+		
+		alert("ab"+v_u);
+		$('#txtDiv_hi').val(v_u);
+		
+	});
+		
+	
+});
+	
+</script>
 
 </head>
 <body>
@@ -602,40 +666,67 @@ body {
 					</div>
 				</div>
 			</div>
-
-		</div>
+					
+		</div>	
+				
+				
+			
 
 		<div class="middle">
 			<div class="middle_left">
 
+           
 				<%
-					for (int i = 0; i < 3; i++) {
+					List<Article> list = (List)request.getAttribute("articles");
+					if(list !=null){
+						System.out.println("index1.jsp"+list);
+						for (int i = 0; i < list.size(); i++) {
 				%>
 				<div id="middle_top">
 					<div class="meddle_title">
-						<p>标题</p>
+						<p><%=list.get(i).getArticle_title() %></p>
 					</div>
 					<div class="meddle_content">
-						某某人说：xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx打发打发发色二等分发送到发送到发送到发发生的发生发生的发生发生的发生
-						打算发到付发生的发生发送到发飞洒地方飞洒地方是打发打发发送到发染发地方染发地方人打算发达人法地生发送到发飞洒地方飞洒地方
-						是打发打发发送到发染发地方染发地方人打算发达人法地</div>
-					<button type="button" class="mz_button">阅读全文</button>
-
+						<%=list.get(i).getUser().getUsername() %>说：<%=list.get(i).getContent() %>
+						<img alt="img" src="<%=list.get(i).getPicture() %>" style="margin-top:2px;" class="content_img">
+					</div>
+					<div style="height:20px">
+						<button type="button" class="pl_button">评论</button><button type="button" class="mz_button">阅读全文</button>
+					</div>
+					<form action="Com_content?id=${user.id }" method="post">
+						<div id='txtDiv' style='border:1px solid #cccccc; height:240px;' class="txt_class<%=i %>">
+							<p class="txt_content">您想对<strong><%=list.get(i).getUser().getUsername() %></strong>说:</p>
+								<input type="hidden" name="comment.content" id="txtDiv_hi" />
+								<input type="hidden" value="<%=request.getParameter("id") %>" name="user_id" />
+								<input type="hidden" value="<%=list.get(i).getId() %>" name="article_id" />
+								
+						</div>
+						<input type="hidden" value="0" class="fwb" />
+						<input type="submit" value="提交" id="txtDiv_sm" onclick="fwb()"/>
+					</form>
+					<hr style="border: none; border-top: #ccc dashed 2px;" />
 				</div>
-				<hr style="border: none; border-top: #ccc dashed 2px;" />
+				<script type="text/javascript">
+					
+				</script>
 				<%
+						}
 					}
 				%>
 
 			</div>
 			<div class="middle_right">
 				<div class="mr_top">
+
 					<div class="m_left"></div>
 				        <div class="m_middle"></div>
 				        <div class="m_right">
 				        <a href = "#?id=${user.id }" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">
 				                写想法</a>
 				        </div>
+
+					<a href="#">写回答</a> <a href="views/write.jsp?id=${user.id }">写文章</a>
+
 				</div>
 			</div>
 

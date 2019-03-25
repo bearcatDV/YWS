@@ -1,5 +1,9 @@
 package org.bigjava.dao;
 
+import java.util.List;
+
+import org.bigjava.bean.Article;
+import org.bigjava.bean.Question;
 import org.bigjava.bean.User;
 
 public interface UserDao {
@@ -57,5 +61,16 @@ public interface UserDao {
 	 */
 	public boolean savaPhotoById(User user);
 	
+	/**
+	 * 通过id保存信息
+	 * @param user
+	 * @return
+	 */
 	public boolean savaMessageById(User user);
+	
+	/**
+	 * 得到所有信息
+	 * @return
+	 */
+	public List<Article> getAllArticle();
 }

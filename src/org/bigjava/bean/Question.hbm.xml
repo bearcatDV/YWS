@@ -3,11 +3,14 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2019-3-24 22:13:37 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
+
     <class name="org.bigjava.bean.Question" table="table_question">
+
         <id name="id" type="java.lang.Integer">
-            <column name="ID" />
+            <column name="id" />
             <generator class="native" />
         </id>
+
         <property name="what" type="java.lang.String">
             <column name="WHAT" />
         </property>
@@ -15,5 +18,6 @@
             <column name="FILEFORM" />
         </property>
        <many-to-one name="user" class="org.bigjava.bean.User" column="userId"></many-to-one> 
+
     </class>
 </hibernate-mapping>

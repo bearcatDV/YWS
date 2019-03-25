@@ -35,7 +35,7 @@
 				"user.password" : p_v
 			};
 			
-			alert(p_v);
+			
 			$.ajax({
 				url: "User_login",
 				type: "post",
@@ -43,10 +43,10 @@
 				dataType: "json",
 				success:function(data, textStatus){
 					if(data.result !="1"){
-						alert(data.result);
+						
 						$("#lab_type1").html("<Strong>"+data.result+"</Strong>");
 					}else{
-						window.location.href="UN_login_ok?id="+data.result1;
+						window.location.href="UN_loginOk?id="+data.result1;
 					}
 					
 				},

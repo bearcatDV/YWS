@@ -203,7 +203,11 @@
 				<hr />
 			</div>
 			<div class="grids_middle">
-				
+				<%
+					for(int i=0;i<4;i++){
+						
+					}
+				%>
 				
 			</div>
 			

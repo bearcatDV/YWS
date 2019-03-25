@@ -1,14 +1,16 @@
 package org.bigjava.dao.impl;
 
-import org.bigjava.bean.User;
+import java.util.List;
+
+import org.bigjava.bean.*;
+
 import org.bigjava.dao.UserDao;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import com.opensymphony.xwork2.Result;
 
-import antlr.collections.List;
+
 
 public class UserDaoImpl implements UserDao {
 	
@@ -134,7 +136,25 @@ public class UserDaoImpl implements UserDao {
 		}
 		return true;
 	}
+
+	@Override
+	public List getAllArticle() {
+		String hql="FROM Article";
+		Query query = getSession().createQuery(hql);
+		System.out.println("getAll1");
+		List list =query.list();
+		System.out.println("getAll2"+list);
+		if(list == null){
+			list= null;
+		}
+		System.out.println(".....");
+		return list;
+	}
 	 
+	
+	public void add(User user){
+		
+	}
 	
 
 }
