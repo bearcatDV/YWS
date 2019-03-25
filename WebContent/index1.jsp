@@ -125,13 +125,16 @@
 					});
 					$(".pl_button").click(function(){
 						var a = $(this).text();
+						alert("a"+a);
 						if(a == "评论"){
 							$(this).parent().next().children().show();
+							var $editor = $(this).parent().next().children().wangEditor();
 							
 							$(this).text("收起评论");
 						}
 						if(a != "评论"){
 							$(this).parent().next().children().hide();
+							
 							$('#txtDiv_sm').hide();
 							$(this).text("评论");
 						}
@@ -379,18 +382,19 @@
 }
 
 .middle {
-	border: 1px solid blue;
+	border: 1px solid yellow;
 	width: 65%;
-	height: 600px;
+	height: auto !important;
 	margin: 0 auto;
 	margin-top: 10px;
+	float:;
 }
 
 .middle_left {
 	border: 1px solid red;
 	background: white;
 	width: 70%;
-	height: 600px;
+	height: auto !important;
 	float: left;
 }
 
@@ -472,10 +476,10 @@
 
 <script type="text/javascript">
 $(function(){
-    $('#spanTime').text((new Date()).toString());
+    
 
     //一句话，即可把一个div 变为一个富文本框！o(∩_∩)o 
-    var $editor = $('#txtDiv').wangEditor();
+     
 
  
 });
@@ -566,7 +570,7 @@ $(function(){
 						<button type="button" class="pl_button">评论</button><button type="button" class="mz_button">阅读全文</button>
 					</div>
 					<form action="Com_content?id=${user.id }" method="post">
-						<div id='txtDiv' style='border:1px solid #cccccc; height:240px;'>
+						<div id='txtDiv' style='border:1px solid #cccccc; height:240px;' class="txt_class<%=i %>">
 							<p class="txt_content">您想对<strong><%=list.get(i).getUser().getUsername() %></strong>说:</p>
 								<input type="hidden" name="comment.content" id="txtDiv_hi" />
 								<input type="hidden" value="<%=request.getParameter("id") %>" name="user_id" /> 
@@ -576,7 +580,9 @@ $(function(){
 					</form>
 					<hr style="border: none; border-top: #ccc dashed 2px;" />
 				</div>
-				
+				<script type="text/javascript">
+					
+				</script>
 				<%
 						}
 					}
