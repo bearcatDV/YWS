@@ -1,14 +1,16 @@
 package org.bigjava.dao.impl;
 
+import org.bigjava.action.UserAction;
 import org.bigjava.bean.Question;
+import org.bigjava.bean.User;
 import org.bigjava.dao.QuestionDao;
+import org.bigjava.dao.UserDao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 public class QuestionDaoImpl implements QuestionDao {
 	
     private SessionFactory sessionFactory;
-	
 	
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
@@ -21,7 +23,6 @@ public class QuestionDaoImpl implements QuestionDao {
 	
 	@Override
 	public void fileSave(Question question) {
-		
 		getSession().save(question);
 	}
 }

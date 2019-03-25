@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2019-3-22 10:04:41 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 2019-3-24 22:13:37 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="org.bigjava.bean.User" table="table_user">
         <id name="id" type="java.lang.Integer">
@@ -47,12 +47,9 @@
         <property name="introduce" type="java.lang.String">
             <column name="INTRODUCE" />
         </property>
-       
-        <set name="questions" cascade="all">
-            <key>
-                <column name="user_id" /><!-- 链接的外键 -->
-            </key>
-               <one-to-many class="org.bigjava.bean.Question" /><!-- 一对多指向 Question -->
-        </set>
+        <set name="questions" >  
+            <key column="userId"></key>  
+            <one-to-many class="org.bigjava.bean.Question"></one-to-many>  
+        </set>  
     </class>
 </hibernate-mapping>

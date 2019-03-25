@@ -6,8 +6,6 @@ import java.util.Set;
 
 public class User {
 
-
-
 	private Integer id; // id
 	private String username; // 用户名
 	private String account; // 账号
@@ -22,15 +20,17 @@ public class User {
 	private String email;//邮件
 	private String hobby;//爱好
 	private String introduce;//个人简介
-	private Set questions = new HashSet(0);
+	private Set<Question> questions = new HashSet<Question>();
 	
 	public User() {}
 	
-	
+	public User(Integer id) {
+		this.id = id;
+	}
 
 	public User(Integer id, String username, String account, String password, String age, String sex, String phone,
 			String state, String photo, String data, String address, String email, String hobby, String introduce,
-			Set questions) {
+			Set<Question> questions) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -48,18 +48,6 @@ public class User {
 		this.introduce = introduce;
 		this.questions = questions;
 	}
-
-
-
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", account=" + account + ", password=" + password
-				+ ", age=" + age + ", sex=" + sex + ", phone=" + phone + ", state=" + state + ", photo=" + photo
-				+ ", data=" + data + ", address=" + address + ", email=" + email + ", hobby=" + hobby + ", introduce="
-				+ introduce + ", questions=" + questions + "]";
-	}
-
-
 
 	public Integer getId() {
 		return id;
@@ -173,14 +161,24 @@ public class User {
 		this.introduce = introduce;
 	}
 
-	public Set getQuestions() {
+	public Set<Question> getQuestions() {
 		return questions;
 	}
 
-	public void setQuestions(Set questions) {
+	public void setQuestions(Set<Question> questions) {
 		this.questions = questions;
 	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", account=" + account + ", password=" + password
+				+ ", age=" + age + ", sex=" + sex + ", phone=" + phone + ", state=" + state + ", photo=" + photo
+				+ ", data=" + data + ", address=" + address + ", email=" + email + ", hobby=" + hobby + ", introduce="
+				+ introduce + ", questions=" + questions + "]";
+	}
 	
+	
+
 	
 	
 }

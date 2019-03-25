@@ -4,15 +4,19 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.interceptor.RequestAware;
+import org.apache.struts2.interceptor.ServletRequestAware;
 import org.bigjava.bean.Question;
+import org.bigjava.bean.User;
 import org.bigjava.dao.QuestionDao;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
-public class QuestionAction extends ActionSupport implements RequestAware,ModelDriven<Question>{
+public class QuestionAction extends ActionSupport implements RequestAware, ServletRequestAware,ModelDriven<Question>{
 	
 	private static final long serialVersionUID = 7622329058096927609L;
 
@@ -24,12 +28,18 @@ public class QuestionAction extends ActionSupport implements RequestAware,ModelD
 	
 	private QuestionDao questionDao;
 	
+	private HttpServletRequest req ;
+	
 	public void setQuestionDao(QuestionDao questionDao) {
 		this.questionDao = questionDao;
 	}
 
-
 	public String savefiles() throws Exception {
+		Integer user_id = Integer.parseInt(req.getParameter("user_id"));  
+		
+	
+		question.setUser(new User(user_id));
+		
 		
 		destPath = "C:/Users/上官旭峰/Desktop/tomcat/webapps/YWS/images";// 图片上传到的路径	
 		
@@ -38,7 +48,7 @@ public class QuestionAction extends ActionSupport implements RequestAware,ModelD
     	question.setFileForm(myFileFileNames);						// 将myFileFileNames路径存放在 Question中
 		
 		questionDao.fileSave(question);									// 将文件路径存放进数据库中
-		
+
 		System.out.println("图片路径" + myFileFileNames);		// Eclipse中图片的路径
 		
 		try {
@@ -49,7 +59,7 @@ public class QuestionAction extends ActionSupport implements RequestAware,ModelD
 			FileUtils.copyFile(myFile, destFile);
 			
 		} catch(IOException e) {
-			e.printStackTrace();
+			e.printStackTrace();			
 			return ERROR;
 		}
 		return "file";
@@ -88,19 +98,26 @@ public class QuestionAction extends ActionSupport implements RequestAware,ModelD
 				+ myFileFileName + ", destPath=" + destPath + "]";
 	}
 
-	private Map<String, Object> request;
 
-	@Override
-	public void setRequest(Map<String, Object> arg0) {
-		this.request = arg0;
-	}
-	
 	@Override
 	public Question getModel() {
 		if(question == null) {
 			question = new Question();
 		}
 		return question;
+	}
+
+	@Override
+	public void setServletRequest(HttpServletRequest arg0) {
+		// TODO Auto-generated method stub
+		this.req = arg0;
+	}
+
+	Map<String,Object> request;
+	@Override
+	public void setRequest(Map<String, Object> arg0) {
+		this.request = arg0;
+		
 	}
 
 }

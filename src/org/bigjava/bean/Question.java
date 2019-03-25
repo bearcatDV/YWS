@@ -13,6 +13,7 @@ public class Question {
 		return "Question [id=" + id + ", what=" + what + ", fileForm=" + fileForm + ", user=" + user + "]";
 	}
 
+	
     
 	public Integer getId() {
 		return id;
@@ -45,12 +46,10 @@ public class Question {
 		return user;
 	}
 	public void setUser(User user) {
+
 		this.user = user;
 	}
 
-
-     
-	
 	public Question(Integer id, String what, String fileForm, User user) {
 		super();
 		this.id = id;

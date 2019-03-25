@@ -6,4 +6,5 @@ public interface QuestionDao {
 	
 	    // 保存图片路径 
 		public void fileSave(Question question);
+		
 }

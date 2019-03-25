@@ -163,6 +163,16 @@
 			document.getElementById("fileload").value = "";
 		};
 	
+		
+		 var ifButton = document.getElementById("ifButton");
+         function yn(){
+       	  
+       	  if(document.getElementById("ifButton").value!=""){
+       		    ifButton.display="none";
+       	  }else{
+       		    ifButton.display="block";
+       	  }
+         }
 			
 		</script>
 <style type="text/css">
@@ -575,9 +585,9 @@ body {
 				</div>
 
 				<div class="h_left_f">
-					<button id="f_button">
-						<img src="image/zhong.PNG" id="click" />
-					</button>
+					<a href="#?${user.id }">
+						<img src="image/myPage.png" id="click" style="width:44px;height:41px" />
+					</a>
 					<div id="pop">
 						<div class="nav nav-border"></div>
 						<div class="nav nav-background"></div>
@@ -585,7 +595,8 @@ body {
 							onmouseout="out(this)">
 							<a href="UN_homePage?id=${user.id}">我的主页</a>
 						</div>
-
+                          <div id="middle_overlay" onclick="javaScriptDiv(id)"
+	                   onmouseover="over(this)" onmouseout="out(this)">设置</div>
 						<div id="foot_overlay" onclick="javaScriptDiv(id)"
 							onmouseover="over(this)" onmouseout="out(this)">退出</div>
 					</div>
@@ -622,7 +633,7 @@ body {
 					<div class="m_left"></div>
 				        <div class="m_middle"></div>
 				        <div class="m_right">
-				        <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">
+				        <a href = "#?id=${user.id }" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">
 				                写想法</a>
 				        </div>
 				</div>
@@ -642,15 +653,16 @@ body {
     <br>
     <input type="file" name="myFile" style="display:none;" onchange="preview()" id="fileload" /> 
     
-   <!--  <input type="button" value="浏 览" onclick="myFile.click();" name="get_file" style="background:white; outline:none; border:none " />--> 
-   
-    <button onclick="myFile.click();" name="get_file" style="margin-top:; background:white; outline:none; border:none; position: absolute; top:70%; left:5%;" ><a href="#">上传图片</a></button>
+   <button onclick="myFile.click();" name="get_file" style="margin-top:; background:white; outline:none; border:none; position: absolute; top:70%; left:5%;" ><a href="#">上传图片</a></button>
     
-		<input type="button" value="x" style="outline:none;" onclick="call();" />
-		
-		<img id="image" style="width:6%; height:5%; border:none;  position: absolute; left:6%; top:75%;" />
+	    <input type="button" id="ifButton" value="x" style="border:none; outline:none; margin-left:20%;" onclick="call();" />
+	    
+		<img id="image" style="width:6%; height:5%; position: absolute; top:76%; left:7%; " />
 
-		<input type="submit" value="提交" id="ifSubmit" disabled="true" style="width:55%; height:40px; margin-left:25%; margin-top:20%; background-color:#00BFFF; border:none" />
+         <input type="hidden" name="user_id" value="<%=request.getParameter("id") %>" />
+         
+		<input type="submit" value="提交" id="ifSubmit" disabled="true" style="width:55%; height:40px; margin-left:25%; margin-top:13%; background-color:#00BFFF; border:none" />
+   
     </form>
     
     <!-- 判断textarea是否为空 -->
@@ -663,6 +675,7 @@ body {
             	   ifSubmit.disabled=true; 
                  }
           }
+          
    </script>
     
         </div> 

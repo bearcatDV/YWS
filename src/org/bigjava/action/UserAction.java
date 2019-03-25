@@ -1,8 +1,5 @@
 package org.bigjava.action;
 
-/**
- * test
- */
 
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -116,7 +113,9 @@ public class UserAction extends ActionSupport implements RequestAware,ModelDrive
 				result="用户名2到10个字且只能是中文或英文";
 				return SUCCESS;
 			}
+
 			User user1=userDao.loginByUsername(user);
+			
 			if(user1 == null){
 				System.out.println("验证五");
 				result="用户名不存在";
