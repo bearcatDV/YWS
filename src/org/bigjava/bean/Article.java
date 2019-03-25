@@ -1,5 +1,8 @@
 package org.bigjava.bean;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Article {
 	/*
 	 * 文章
@@ -9,13 +12,13 @@ public class Article {
 	 * 4.类别
 	 * 5.关联用户id
 	 */
-	public Article() {
-	}
+	
 	private Integer id;
 	private String article_title;//文章标题
 	private String picture;//文章图片
 	private String content;//文章正文
 	private String category;//文章类别
+	private Set<Comment> comments= new HashSet<Comment>();
 	private User user;
 	
 	public User getUser() {
@@ -55,6 +58,14 @@ public class Article {
 		this.category = category;
 	}
 	
+	
+	public Set<Comment> getComments() {
+		return comments;
+	}
+	public void setComments(Set<Comment> comments) {
+		this.comments = comments;
+	}
+	
 	@Override
 	public String toString() {
 		return "Article [id=" + id + ", article_title=" + article_title + ", picture=" + picture + ", content="
@@ -69,7 +80,10 @@ public class Article {
 		this.category = category;
 		this.user = user;
 	}
+	public Article() {}
 	
-	
+	public Article(Integer id) {
+		this.id = id;
+	}
 	
 }

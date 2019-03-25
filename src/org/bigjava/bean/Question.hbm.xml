@@ -3,18 +3,16 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2019-3-21 21:09:13 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="org.bigjava.bean.Question" table="QUESTION">
+    <class name="org.bigjava.bean.Question" table="question">
         <id name="id" type="java.lang.Integer">
-            <column name="ID" />
+            <column name="id" />
             <generator class="native" />
         </id>
-        <property name="what" type="java.lang.String">
-            <column name="WHAT" />
-        </property>
-        <property name="fileForm" type="java.lang.String">
-            <column name="FILEFORM" />
-        </property>
-        <many-to-one name="user" class="org.bigjava.bean.User" fetch="join">
+        <property name="what" type="java.lang.String"></property>
+        <property name="fileForm" type="java.lang.String"></property>
+        
+        
+      <many-to-one name="user" class="org.bigjava.bean.User">
             <column name="USER_ID" />
         </many-to-one>
     </class>

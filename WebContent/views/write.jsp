@@ -119,7 +119,7 @@
 			</tr>
 			
 		</table>
-	
+	<input type="hidden" value="<%=request.getParameter("id") %>" name="user_id"/>
 	</div>
 		</form>
 

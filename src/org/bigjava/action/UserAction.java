@@ -11,6 +11,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.struts2.interceptor.RequestAware;
+import org.bigjava.bean.Article;
 import org.bigjava.bean.Question;
 import org.bigjava.bean.User;
 import org.bigjava.dao.UserDao;
@@ -29,7 +30,6 @@ public class UserAction extends ActionSupport implements RequestAware,ModelDrive
 	private UserDao userDao;
 	Map<String, Object> request;
 	private String result;
-	
 	
 	private String result1;
 	private String rePassword; //密码确认验证
@@ -134,7 +134,7 @@ public class UserAction extends ActionSupport implements RequestAware,ModelDrive
 			User user1=userDao.loginByUsername(user);
 			if(user1 == null){
 				System.out.println("验证五");
-				result="用户名不存在";
+				result="用户不存在";
 				
 				return SUCCESS;
 			}
@@ -150,7 +150,7 @@ public class UserAction extends ActionSupport implements RequestAware,ModelDrive
 			user.setAccount(username);
 			User user1 = userDao.loginByAccount(user);
 			if(user1 == null){
-				result="账号不存在";
+				result="用户不存在";
 				return "success";
 			}
 			result="1";
@@ -242,14 +242,13 @@ public class UserAction extends ActionSupport implements RequestAware,ModelDrive
 		return "success";
 	}
 	//登录成功
-	public String login_ok(){
-		System.out.println("login_ok");
-		List<Question> list=userDao.getAllQuestions();
+	public String loginOk(){
+		System.out.println("login_ok"+user);
+		List<Article> list=userDao.getAllArticle();
 		
-		if(list != null){
-			request.put("questions", list);
-		}
-		System.out.println("list.get"+list.get(0).getWhat());
+		
+		System.out.println("login_Ok"+user);
+		request.put("articles", list);
 		request.put("user", user);
 		return SUCCESS;
 	}

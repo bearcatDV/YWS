@@ -8,9 +8,7 @@ import org.bigjava.dao.UserDao;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.stereotype.Component;
 
-import com.opensymphony.xwork2.Result;
 
 
 
@@ -140,15 +138,16 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public List getAllQuestions() {
-		String hql="FROM Question";
+	public List getAllArticle() {
+		String hql="FROM Article";
 		Query query = getSession().createQuery(hql);
 		System.out.println("getAll1");
-		List<Question> list =query.list();
+		List list =query.list();
 		System.out.println("getAll2"+list);
 		if(list == null){
-			return null;
+			list= null;
 		}
+		System.out.println(".....");
 		return list;
 	}
 	 

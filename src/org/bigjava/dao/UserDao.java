@@ -2,6 +2,7 @@ package org.bigjava.dao;
 
 import java.util.List;
 
+import org.bigjava.bean.Article;
 import org.bigjava.bean.Question;
 import org.bigjava.bean.User;
 
@@ -71,5 +72,5 @@ public interface UserDao {
 	 * 得到所有信息
 	 * @return
 	 */
-	public List<Question> getAllQuestions();
+	public List<Article> getAllArticle();
 }

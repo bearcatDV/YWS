@@ -34,7 +34,7 @@ import com.opensymphony.xwork2.ModelDriven;
  * @author 讲不出再见
  *
  */
-public class ArticleAction extends ActionSupport implements ModelDriven<Article>{
+public class ArticleAction extends ActionSupport implements ModelDriven<Article>, ServletRequestAware{
 
 private ArticleDao articleDao;
 private Article article;
@@ -44,7 +44,7 @@ private String myFileContentType;//上传文件的内容类型
 private String myFileFileName; //上传文件的名称
 private String destPath;//上传的地址
 
-
+private HttpServletRequest request;
 
 public ArticleDao getArticleDao() {
 	return articleDao;
@@ -101,9 +101,12 @@ public void setDestPath(String destPath) {
 public ArticleAction(){}
 
 public String write() {
-	System.out.println("jinlail ????");
-		destPath ="E:/tomcat/apache-tomcat-7.0.92/apache-tomcat-7.0.92/webapps/YWS/picture/";//图片上传的路径
-		String myFileFileNames = "picture/"+myFileFileName;
+	
+		Integer id=Integer.valueOf(request.getParameter("user_id"));
+		article.setUser(new User(id));
+		/*destPath ="E:/tomcat/apache-tomcat-7.0.92/apache-tomcat-7.0.92/webapps/YWS/picture/";//图片上传的路径*/	
+		destPath=ServletActionContext.getServletContext().getRealPath("/image");
+		String myFileFileNames = "image/"+myFileFileName;
 		article.setPicture(myFileFileNames);//将myFileFileNames路径存放在article中
 		System.out.println("内容"+article);
 		articleDao.add(article);//将文件路径存放进数据库中
@@ -128,6 +131,12 @@ public Article getModel() {
 		article = new Article();
 	}
 	return article;
+}
+
+@Override
+public void setServletRequest(HttpServletRequest arg0) {
+	this.request = arg0;
+	
 }
 
 }

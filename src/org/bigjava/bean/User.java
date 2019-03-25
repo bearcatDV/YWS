@@ -1,6 +1,5 @@
 package org.bigjava.bean;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,8 +21,9 @@ public class User {
 	private String hobby;//爱好
 	private String introduce;//个人简介
 
-	private Set questions = new HashSet();
+	private Set<Question> questions = new HashSet<Question>();
 	private Set<Article> articles = new HashSet<Article>();//文章
+	private Set<Comment> comments = new HashSet<Comment>();//评论
 	public Integer getId() {
 		return id;
 	}
@@ -108,7 +108,14 @@ public class User {
 	public void setIntroduce(String introduce) {
 		this.introduce = introduce;
 	}
-	
+	public Set<Question> getQuestions() {
+
+		return questions;
+	}
+	public void setQuestions(Set<Question> questions) {
+		this.questions = questions;
+
+	}
 	public Set<Article> getArticles() {
 		return articles;
 	}
@@ -117,26 +124,24 @@ public class User {
 		this.articles = articles;
 	}
 	
+
 	
+
+	public Set<Comment> getComments() {
+		return comments;
+	}
+	public void setComments(Set<Comment> comments) {
+		this.comments = comments;
+	}
 	
-
-	public Set getQuestions() {
-
-		return questions;
-	}
-	public void setQuestions(Set questions) {
-		this.questions = questions;
-
-	}
-
-
 	public User() {}
-
-
+	public User(Integer id) {
+		this.id=id;
+	}
+	
 	public User(Integer id, String username, String account, String password, String age, String sex, String phone,
-			String state, String photo, String data, String address, String email, String hobby, String introduce, Set questions,
-			Set<Article> articles) {
-
+			String state, String photo, String data, String address, String email, String hobby, String introduce,
+			Set<Question> questions, Set<Article> articles, Set<Comment> comments) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -154,16 +159,17 @@ public class User {
 		this.introduce = introduce;
 		this.questions = questions;
 		this.articles = articles;
-
+		this.comments = comments;
 	}
-	
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", account=" + account + ", password=" + password
 				+ ", age=" + age + ", sex=" + sex + ", phone=" + phone + ", state=" + state + ", photo=" + photo
 				+ ", data=" + data + ", address=" + address + ", email=" + email + ", hobby=" + hobby + ", introduce="
-				+ introduce +", questions" +questions+ ", articles=" + articles + "]";
+				+ introduce + "]";
 	}
+	
+	
 	
 }
 	

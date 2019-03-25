@@ -31,8 +31,7 @@
                 hibernate.dialect=org.hibernate.dialect.MySQL5Dialect
     			hibernate.show_sql=true
     			hibernate.format_sql=true
-    			hibernate.hbm2ddl.auto=update
-    			
+    			hibernate.hbm2ddl.auto=create
            </value>
         </property>
      </bean>
@@ -62,6 +61,7 @@
    	<bean name="articleDao" class="org.bigjava.dao.impl.ArticleDaoImpl">
    		<property name="sessionFactory" ref="sessionFactory"></property>
    	</bean>
+   	
    	<bean name="articleAction" class="org.bigjava.action.ArticleAction" scope="prototype">
    		<property name="articleDao" ref="articleDao"></property>
    	</bean>
@@ -79,4 +79,11 @@
    	   <property name="questionDao" ref="questionDao"></property>
    	</bean>
    
+   <bean name="commentDao" class="org.bigjava.dao.impl.CommentDaoImpl">
+   		<property name="sessionFactory" ref="sessionFactory"></property>
+   </bean>
+   
+   <bean name="commentAction" class="org.bigjava.action.CommentAction">
+   	<property name="commentDao" ref="commentDao"></property>
+   </bean>
 </beans>

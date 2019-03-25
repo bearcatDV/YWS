@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2019-3-13 10:35:01 by Hibernate Tools 3.5.0.Final -->
+<!-- Generated 2019-3-23 15:33:22 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="org.bigjava.bean.Article" table="article">
+    <class name="org.bigjava.bean.Article" table="ARTICLE">
         <id name="id" type="java.lang.Integer">
             <column name="ID" />
             <generator class="native" />
@@ -20,9 +20,14 @@
         <property name="category" type="java.lang.String">
             <column name="CATEGORY" />
         </property>
-       
-      	<many-to-one name="user" class="org.bigjava.bean.User" column="user_id" lazy="false"/>
-      		
         
+        <many-to-one name="user" class="org.bigjava.bean.User" fetch="join">
+            <column name="USER_ID" />
+        </many-to-one>
+        
+        <set name="comments">
+        	<key column="ARTICLE_ID"></key>
+        	<one-to-many class="org.bigjava.bean.Comment"/>
+        </set>
     </class>
 </hibernate-mapping>
