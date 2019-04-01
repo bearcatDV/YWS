@@ -1,23 +1,28 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2019-3-24 22:13:37 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 2019-3-29 15:50:05 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-
     <class name="org.bigjava.bean.Question" table="table_question">
-
-        <id name="id" type="java.lang.Integer">
-            <column name="id" />
+        <id name="id" type="java.lang.Integer" access="field">
+            <column name="ID" />
             <generator class="native" />
         </id>
-
         <property name="what" type="java.lang.String">
             <column name="WHAT" />
         </property>
         <property name="fileForm" type="java.lang.String">
             <column name="FILEFORM" />
         </property>
-       <many-to-one name="user" class="org.bigjava.bean.User" column="userId"></many-to-one> 
-
+        
+        <many-to-one name="user" class="org.bigjava.bean.User" column="userId" fetch="join">
+        </many-to-one> 
+        
+        <set name="answer" inverse="false" lazy="true">
+            <key>
+                <column name="questionID" />
+            </key>
+            <one-to-many class="org.bigjava.bean.Answer" />
+        </set>
     </class>
 </hibernate-mapping>

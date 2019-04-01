@@ -7,9 +7,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.struts2.interceptor.RequestAware;
+import org.bigjava.bean.Answer;
 import org.bigjava.bean.Article;
 import org.bigjava.bean.Question;
 import org.bigjava.bean.User;
+import org.bigjava.dao.QuestionDao;
 import org.bigjava.dao.UserDao;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -23,13 +25,18 @@ public class UserAction extends ActionSupport implements RequestAware,ModelDrive
 	private User user;
 	private Question question;
 	private UserDao userDao;
-	Map<String, Object> request;
+	private Map<String, Object> request;
 	private String result;
+	private QuestionDao questionDao;
 	
 	private String result1;
 	private String rePassword; //密码确认验证
 	Matcher matcher=null;
 	Pattern pattern=null;
+	
+	public void setQuestionDao(QuestionDao questionDao) {
+		this.questionDao = questionDao;
+	}
 
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
@@ -240,17 +247,20 @@ public class UserAction extends ActionSupport implements RequestAware,ModelDrive
 	}
 	//登录成功
 	public String loginOk(){
-		System.out.println("login_ok"+user);
+		System.out.println("来啦 老弟："+user);
 		List<Article> list=userDao.getAllArticle();
-		
-		
-		System.out.println("login_Ok"+user);
+			
+		System.out.println("射了 老弟："+user);
 		request.put("articles", list);
+		
 		request.put("user", user);
 		return SUCCESS;
 	}
 	public String homePage() throws Exception{
 		User user1=userDao.getUserById(user.getId());
+		List<Question> questions = userDao.getQuestions(user.getId());
+		
+		request.put("questions" ,questions);
 		request.put("user", user1);
 		System.out.println("homePage_user1"+user1);
 		return "homePage";
@@ -261,8 +271,10 @@ public class UserAction extends ActionSupport implements RequestAware,ModelDrive
 		
 		return SUCCESS;
 	}
+	
+	
 	@Override
-	public User getModel() {
+	public User getModel() { 
 		if(user == null){
 			user= new User();
 		}

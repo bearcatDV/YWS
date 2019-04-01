@@ -80,6 +80,14 @@
    	   <property name="questionDao" ref="questionDao"></property>
    	</bean>
    
+   <bean name="answerDao" class="org.bigjava.dao.impl.AnswerDaoImpl">
+       <property name="sessionFactory" ref="sessionFactory"></property>
+   </bean>
+   
+   <bean name="answerAction" class="org.bigjava.action.AnswerAction">
+       <property name="answerDao" ref="answerDao"></property>
+   </bean>
+   
    <bean name="commentDao" class="org.bigjava.dao.impl.CommentDaoImpl">
    		<property name="sessionFactory" ref="sessionFactory"></property>
    </bean>

@@ -1,12 +1,16 @@
 package org.bigjava.action;
 
 import java.io.File;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.RequestAware;
+import org.bigjava.bean.Answer;
+import org.bigjava.bean.Question;
 import org.bigjava.bean.User;
+import org.bigjava.dao.QuestionDao;
 import org.bigjava.dao.UserDao;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -20,6 +24,21 @@ public class PhotoUpload extends ActionSupport implements ModelDriven<User>,Requ
 	private String myFileContentType;
 	private String myFileFileName;
 	private String destPath;
+	private Question question;
+	private QuestionDao questionDao;
+	
+	public void setQuestionDao(QuestionDao questionDao) {
+		this.questionDao = questionDao;
+	}
+
+	public Question getQuestion() {
+		return question;
+	}
+	public void setQuestion(Question question) {
+		this.question = question;
+	}
+
+
 
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
@@ -69,7 +88,7 @@ public class PhotoUpload extends ActionSupport implements ModelDriven<User>,Requ
 		System.out.println("upload()"+user);
 		
 
-		destPath = "D:/eclipse/workbench/quora/WebContent/image";
+		destPath = "D:/chuangjian/YWS/WebContent/images";
 		System.out.println("destPath"+destPath);
 		if(myFile!=null) {
 			System.out.println("myFile"+myFile+"myFileFileName"+myFileFileName);
@@ -84,12 +103,16 @@ public class PhotoUpload extends ActionSupport implements ModelDriven<User>,Requ
 			destFile  = new File(destPath, myFileFileName);
 			FileUtils.copyFile(myFile, destFile);
 			
-			String ph="image/"+myFileFileName;
+			String ph="images/"+myFileFileName;
 			
 			user.setPhoto(ph);
 			userDao.savaPhotoById(user);
 			User user1=userDao.getUserById(user.getId());
+			List<Question> questions = userDao.getQuestions(user.getId());
+			List<Answer> answers = questionDao.getAnswers(question.getId());
 			System.out.println("upload_user1"+user1);
+	
+			request.put("questions",questions);
 			request.put("user", user1);
 			return "upload";
 		}else{
@@ -104,6 +127,7 @@ public class PhotoUpload extends ActionSupport implements ModelDriven<User>,Requ
 			return "error";
 		}
 		User user1 = userDao.getUserById(user.getId());
+		
 		request.put("user", user1);
 		return "message";
 	}

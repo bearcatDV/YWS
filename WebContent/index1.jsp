@@ -65,7 +65,7 @@
 				});
 	
 			});
-			window.onload=function(){
+			 window.onload=function(){
 			      var obj=document.getElementById("pop");
 				  var head=document.getElementById("head_overlay");
 				  var middle=document.getElementById("middle_overlay");
@@ -75,7 +75,7 @@
 			      
 			       oBtn.onclick=function(){
 			        obj.style.display="block";
-			      }   
+			      }    
 			      document.onclick=function(event){
 			        //e对象存在时回返e,当window.event存在时返回event，这样就区分ff,ie
 			        var e=e|| window.event;//兼容ie和非ie的event
@@ -95,12 +95,11 @@
 			          }
 			        }
 			      }     
-			
+			    }
 				
 				function javaScriptDiv(obj){
 				    var divVal = document.getElementById(obj).innerHTML;
-				    
-					
+					document.write("this is："+divVal); 
 				}
 				
 				// 鼠标光标接触事件
@@ -108,10 +107,11 @@
 				  obj.style.backgroundColor="white"
 				}
 				
-				//失去鼠标光标事件
+				// 失去鼠标光标事件 
 				function out(obj){
 				 obj.style.backgroundColor="#F6F1B3"
-				};
+				}
+				
 				$(function(){
 					
 					$(".mz_button").click(function(){
@@ -145,61 +145,49 @@
 					
 				});
 	
-				//实现预览功能
-		function preview() {
-			//获取文件框的第一个文件,因为文件有可能上传多个文件,咱这里是一个文件
-			var file = document.getElementById("fileload").files[0];
-			//可以进行一下文件类型的判断
-			var fileType = file.type.split("/")[0];
-			if(fileType != "image") {
-				alert("请上传图片")
-				return;
-			}
-			//图片大小的限制
-			/*var fileSize = Math.round(file.size/1024/1024);
-			if(fileSize >= 3) {
-				alert("请上传小于少于3M的图片");
-				return;
-			} */
-			//获取img对象
-			var img = document.getElementById("image");
-			//建一条文件流来读取图片
-			var reader = new FileReader();
-			//根据url将文件添加的流中
-			reader.readAsDataURL(file);
-			//实现onload接口
-			reader.onload = function(e) {
-				//获取文件在流中url
-				url = reader.result;
-				
-				//将url赋值给img的src属性
-				img.src = url;
-			};
+				     //实现预览功能
+				    function preview() {
+					//获取文件框的第一个文件,因为文件有可能上传多个文件,咱这里是一个文件
+					var file = document.getElementById("fileload").files[0];
+					//可以进行一下文件类型的判断
+					var fileType = file.type.split("/")[0];
+					if(fileType != "image") {
+						alert("请上传图片")
+						return;
+					}
+					//图片大小的限制
+					/*var fileSize = Math.round(file.size/1024/1024);
+					if(fileSize >= 3) {
+						alert("请上传小于少于3M的图片");
+						return;
+					} */
+					//获取img对象
+					var img = document.getElementById("image");
+					//建一条文件流来读取图片
+					var reader = new FileReader();
+					//根据url将文件添加的流中
+					reader.readAsDataURL(file);
+					//实现onload接口
+					reader.onload = function(e) {
+						//获取文件在流中url
+						url = reader.result;
+						
+						//将url赋值给img的src属性
+						img.src = url;
+					};
 
 
-		};
-		//实现取消上传功能
-		function call() {
-			//将img的src属性赋值为空串
-			document.getElementById("image").src = "";
-			//选择文件框的value属性赋值为空串
+				};
+				//实现取消上传功能
+				function call() {
+					//将img的src属性赋值为空串
+					document.getElementById("image").src = "";
+					//选择文件框的value属性赋值为空串
+					
+					document.getElementById("fileload").value = "";
+				};
 			
-			document.getElementById("fileload").value = "";
-		};
-	
-		
-		 var ifButton = document.getElementById("ifButton");
-         function yn(){
-       	  
-       	  if(document.getElementById("ifButton").value!=""){
-       		    ifButton.display="none";
-       	  }else{
-       		    ifButton.display="block";
-       	  }
-         }
-
-				}
-
+					
 			
 		</script>
 <style type="text/css">
@@ -370,74 +358,72 @@
 	height: 30px;
 }
 
-#pop {
-	display: none;
-	position: absolute;
-	margin-top: 15px;
-	margin-left: -38px;
-	width: 8%;
-	height: 15%;
-	background-color: #F6F1B3;
-	z-index: 1001;
-	-moz-opacity: 0.8;
-	opacity: .80;
-	filter: alpha(opacity = 88);
-}
-
-.nav {
-	position: absolute;
-	left: 50px;
-	overflow: hidden;
-	width: 0;
-	height: 0;
-	border-width: 10px;
-	border-style: solid dashed dashed dashed;
-}
-
-.nav-border {
-	top: -20px;
-	border-color: transparent transparent #DACE7C transparent;
-}
-
-.nav-background {
-	top: -19px;
-	border-color: transparent transparent #F6F1B3 transparent;
-}
-
-#head_overlay {
-	top: 0%;
-	left: 0%;
-	width: 100%;
-	height: 30%;
-	background-color:;
-	z-index: 1001;
-	-moz-opacity: 0.8;
-	opacity: .80;
-	filter: alpha(opacity = 88);
-	margin-top: 5px;
-}
-
-#middle_overlay {
-	top: 0%;
-	left: 0%;
-	width: 100%;
-	height: 30%;
-	background-color:;
-	z-index: 1001;
-	-moz-opacity: 0.8;
-	opacity: .80;
-	filter: alpha(opacity = 88);
-}
-
-#foot_overlay {
-	width: 100%;
-	height: 30%;
-	background-color:;
-	z-index: 1001;
-	-moz-opacity: 0.8;
-	opacity: .80;
-	filter: alpha(opacity = 88);
-}
+ #pop {   display: none; 
+            position: absolute; 
+            top: 30%; 
+            left: 18%; 
+            width: 8%; 
+            height: 15%; 
+            background-color: #F6F1B3; 
+            z-index:1001; 
+            -moz-opacity: 0.8; 
+            opacity:.80; 
+            filter: alpha(opacity=88);
+			}
+			
+    .nav {
+            position:absolute;
+            left:50px;
+            overflow:hidden;
+            width:0;
+            height:0;
+            border-width:10px;
+            border-style:solid dashed dashed dashed;
+        }
+        .nav-border {
+            top:-20px;
+            border-color:transparent transparent #DACE7C transparent;
+        }
+        .nav-background {
+            top:-19px;
+            border-color:transparent transparent #F6F1B3 transparent;
+        }
+			
+			
+      #head_overlay{ 
+            top: 0%; 
+            left: 0%; 
+            width: 100%; 
+            height: 30%; 
+            background-color: ; 
+            z-index:1001; 
+            -moz-opacity: 0.8; 
+            opacity:.80; 
+            filter: alpha(opacity=88); 
+			margin-top:5px;
+        } 
+		#middle_overlay{ 
+            top: 0%; 
+            left: 0%; 
+            width: 100%; 
+            height: 30%; 
+            background-color:; 
+            z-index:1001; 
+            -moz-opacity: 0.8; 
+            opacity:.80; 
+            filter: alpha(opacity=88);
+    		
+        } 
+		#foot_overlay{ 
+            width: 100%; 
+            height: 30%; 
+            background-color:; 
+            z-index:1001; 
+            -moz-opacity: 0.8; 
+            opacity:.80; 
+            filter: alpha(opacity=88);
+      			
+        }
 
 .middle {
 	border: 1px solid yellow;
@@ -738,17 +724,17 @@ $(function(){
 		  <h1 style="text-align:center;margin-top:-3%">写想法</h1>
 		  <h4 style="text-align:center">ZH写出你的想法</h4>
           
-    <form name="fileSave" action="upload"  method="post" enctype="multipart/form-data" style=" margin-align:center;" >  
+    <form name="fileSave" action="upload_filesave"  method="post" enctype="multipart/form-data" style=" margin-align:center;" >  
     <br><br>
    <textarea name="what" rows="15%" cols="70%" style=" margin-left: 2.5%; margin-top:-5%" value="" onkeyup="ifNull();"></textarea>
     <br>
     <input type="file" name="myFile" style="display:none;" onchange="preview()" id="fileload" /> 
     
-   <button onclick="myFile.click();" name="get_file" style="margin-top:; background:white; outline:none; border:none; position: absolute; top:70%; left:5%;" ><a href="#">上传图片</a></button>
-    
-	    <input type="button" id="ifButton" value="x" style="border:none; outline:none; margin-left:20%;" onclick="call();" />
-	    
-		<img id="image" style="width:6%; height:5%; position: absolute; top:76%; left:7%; " />
+    <button onclick="myFile.click();" name="get_file" style="margin-top:; background:white; outline:none; border:none; position: absolute; top:70%; left:5%;" ><a href="#">上传图片</a></button>
+   
+	    <button style="border:none; outline:none; margin-left:20%;" onclick="call();"><a href="#">x</a></button>
+	    、
+		<img id="image" />
 
          <input type="hidden" name="user_id" value="<%=request.getParameter("id") %>" />
          
@@ -760,7 +746,7 @@ $(function(){
     <script language="javascript" type="text/javascript"> 
        var ifSubmit=document.getElementById("ifSubmit");
           function ifNull () { 
-               if(document.fileSave.what.value!="") {
+               if(document.fileSave.what.value!="" ||document.fileSave.what.length()==0) {
                    ifSubmit.disabled=false; 
                } else{ 
             	   ifSubmit.disabled=true; 
@@ -768,7 +754,6 @@ $(function(){
           }
           
    </script>
-    
         </div> 
         <div id="fade" class="black_overlay">
             <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">

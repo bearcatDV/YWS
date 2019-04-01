@@ -24,11 +24,13 @@ public class User {
 	private Set<Question> questions = new HashSet<Question>();
 	private Set<Article> articles = new HashSet<Article>();//文章
 	private Set<Comment> comments = new HashSet<Comment>();//评论
+	private Set<Answer> answer = new HashSet<Answer>();
 	
 	
+
 	public User(Integer id, String username, String account, String password, String age, String sex, String phone,
 			String state, String photo, String data, String address, String email, String hobby, String introduce,
-			Set<Question> questions, Set<Article> articles, Set<Comment> comments) {
+			Set<Question> questions, Set<Article> articles, Set<Comment> comments, Set<Answer> answer) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -47,9 +49,18 @@ public class User {
 		this.questions = questions;
 		this.articles = articles;
 		this.comments = comments;
+		this.answer = answer;
 	}
-	
+
 	public User() {}
+	
+	public Set<Answer> getAnswer() {
+		return answer;
+	}
+
+	public void setAnswer(Set<Answer> answer) {
+		this.answer = answer;
+	}
 	
 	public User(Integer id) {
 		this.id = id;

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	pageEncoding="UTF-8" import="java.util.*,org.bigjava.bean.*" %>
+	<%@ taglib prefix="s" uri="/struts-tags" %>
+<!DOCTYPE html>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="width=device-width, initial-scale=1; charset=UTF-8">
@@ -13,6 +14,23 @@
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css" media="all" />
 	<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	
+	<!--  
+	<script type="text/javascript">
+	$(document).ready(function(){
+		  $(".but").click(function(){
+	      var val = $(this).val();
+	      if(val=="评论"){
+		 // $(this).next().show();
+		  $(this).val("收起评论");
+	      }else{
+	    	 // $(this).next().hide();
+	    	  $(this).val("评论");
+	      }
+		  });
+		});
+    </script>
+	-->
 	<style type="text/css">
 		bady{
 			background:#F6F6F6;
@@ -86,7 +104,7 @@
 			height:70px;
 		}
 		.container{
-			border:1px solid blue;
+			border:0px solid blue;
 			background-color:#F6F6F6;
 			width:100%;
 			height:900px;
@@ -98,8 +116,85 @@
 			font-size:24px;
 			width:18%;
 		}
+		
+		.grids_midT{
+			width:100%; 
+            height: 8%;             
+            float:top;
+		}
+		
 		.grids_middle{
-			
+			width:75%; 
+            height:75%; 
+            background-color: yellow; 
+		}
+		
+		
+		.grids_midZong{
+			width:100%; 
+            height: 100%; 
+            float:top;
+		}
+		
+		.grids_midTop{
+			width:100%; 
+            height:20%; 
+            float:top;
+           
+		}
+		
+		.grids_midTopTop{
+			width:100%; 
+            height:25%; 
+            float:top;
+           
+		}
+		
+		.grids_midTopF{
+			width:100%; 
+            height:95%; 
+            float:top;
+           
+		}
+		
+		.grids_midTopFleft{
+			width:5%; 
+            height:78%; 
+            float:left;
+           
+		}
+		
+		.grids_midTopFleftRight{
+			width:20%; 
+            height:78%; ; 
+            padding-top:2%;
+            float:left;
+           
+		}
+		
+		.grids_midMid{
+			width:100%; 
+            height: 10%; 
+            padding-top:2%; 
+            float:top;
+           
+		}
+		.grids_midHead{
+			width:100%; 
+            height: 35%; 
+            float:top;
+		}
+		
+		.grids_comment{
+			width:100%; 
+            height: 35%; 
+            margin-top:6%;
+            float:top;
+		}
+		
+		.grids_comz{
+			width:100%; 
+            height: 100%; 
 		}
 		
 	</style>
@@ -192,25 +287,93 @@
 			<h3>知&nbsp;乎</h3>
 			<hr />
 		</div>
-		<div class="w3-about-grids">
+		<div class="w3-about-grids" style="border:0px solid;">
 			<div class="grids_top">
 				<ul>
-					<li><a href="">动态</a></li>
+					<li>
+					<a href="#">动态</a>
+					<input type="hidden" name="id" value="<%=request.getParameter("id") %>" />
+					</li>
 					<li><a href="">回答</a></li>
 					<li><a href="">提问</a></li>
 					<li><a href="">文章</a></li>
 				</ul>
 				<hr />
 			</div>
+			<div class="grids_midT" style="padding-top:2%">我的动态</div>
+			<s:if test="#request.questions == null || #request.questions.size() == 0">
+			  没有任何动态
+			</s:if>
+			<s:else>
+	
+	       
+			<s:iterator value="#request.user">
+			 <s:iterator value="#request.questions">
+			  
 			<div class="grids_middle">
-				<%
-					for(int i=0;i<4;i++){
-						
-					}
-				%>
-				
+	        <hr>
+	     
+	       <div class="grids_midZong">
+        
+	        <div class="grids_midTop">
+	        <div class="grids_midTopTop">发布了想法</div>
+	        
+	        <div class="grids_midTopF">
+	        
+	        <div class="grids_midTopFleft">
+	        <img alt="img" src="${photo }" style="width:41px;height:43px;" >
+	        </div>
+	        <div class="grids_midTopFleftRight">
+	        ${username }
+	        </div>
+	        </div>
+	        </div>
+	        
+	         <div class="grids_midMid">
+	         
+	         ${what }
+	         </div>
+	         
+	         <div class="grids_midHead">
+	         <img alt="img" src="${fileForm }" style="width:164px;height:172px;" >
+	        </div>
+	         
+	         <div class="grids_comment">
+	
+	         <form action="upload_answers?${question.id }" method="post">
+	             <input type="button" class="but" value="评论">
+	         </form>
+	            
+	           <s:iterator value="#request.answers">
+  	           <div class="grids_comm">
+  	            ${comm }
+  	           </div>
+  	           	</s:iterator>
+	            
+	         <form action="saveAnswer?question_id=${id }" method="post">
+	         
+	          
+	           <div class="grids_comz" style="display: none">
+               <br><br>
+  	           <input type="text" name="comm" placeholder="请写下你的评论" id="txt1" />
+  	           
+  	    
+  	           
+  	           <input type="hidden" name="user_id" value="<%=request.getParameter("id") %>" />
+  	           <input type="hidden" name="question_id" value="<%=request.getParameter("question_id") %>" />
+  	           <input type="submit">
+               </div>
+	             
+	         </form>
+	         </div>
+	          
+	       </div>
+            
 			</div>
-			
+			</s:iterator>
+	           </s:iterator>
+
+			</s:else>
 		</div>
 	</div>
 </div>

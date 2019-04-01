@@ -155,6 +155,37 @@ public class UserDaoImpl implements UserDao {
 	public void add(User user){
 		
 	}
+
+	//拿到所有Question
+	@Override
+	public List<Question> getQuestions(Integer id) {
+		String hql = "FROM Question question where question.user=?";
+
+		Query query = getSession().createQuery(hql);
+		query.setInteger(0, id);
+		List list = query.list();
+		System.out.println("哈哈：" +list);
+		
+		if(list==null) {
+			list=null;
+		}
+		return list;
+	}
+
+	@Override
+	public List<Answer> getAnswers(Integer id) {
+		String hql = "FROM Answer answer where answer.user = ?";
+		
+		Query query = getSession().createQuery(hql);
+		query.setInteger(0, id);
+		List list = query.list();
+		System.out.println("嗯哼：" +list);
+		
+		if(list == null) {
+			list=null;
+		}
+		return list;
+	}
 	
 
 }
