@@ -105,8 +105,8 @@ public String write() {
 		Integer id=Integer.valueOf(request.getParameter("user_id"));
 		article.setUser(new User(id));
 		/*destPath ="E:/tomcat/apache-tomcat-7.0.92/apache-tomcat-7.0.92/webapps/YWS/picture/";//图片上传的路径*/	
-		destPath=ServletActionContext.getServletContext().getRealPath("/image");
-		String myFileFileNames = "image/"+myFileFileName;
+		destPath = ServletActionContext.getServletContext().getRealPath("/images");
+		String myFileFileNames = "images/"+myFileFileName;
 		article.setPicture(myFileFileNames);//将myFileFileNames路径存放在article中
 		System.out.println("内容"+article);
 		articleDao.add(article);//将文件路径存放进数据库中
@@ -118,6 +118,11 @@ public String write() {
 		
 			File destFile = new File(destPath, myFileFileName);
 			FileUtils.copyFile(myFile, destFile);
+			
+			destPath="D:/chuangjian/YWS/WebContent/images";// 图片上传到的路径
+			destFile = new File(destPath,myFileFileName);
+			FileUtils.copyFile(myFile, destFile);
+			
 		}catch(IOException e){
 			e.printStackTrace();
 			return ERROR;

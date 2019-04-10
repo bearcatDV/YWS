@@ -8,7 +8,7 @@
  
 	<package name="hh" extends="struts-default" namespace="/">
 		<action name="Article_*" class="articleAction" method="{1}">
-			<result name="write" >/views/gameOver.jsp</result>
+			<result name="write" >/homePage.jsp</result>
 		</action>
 
 	
@@ -22,18 +22,25 @@
 			<result name="success">/index1.jsp</result>
 			<result name="error">/login.jsp</result>
 			<result name="homePage">/homePage.jsp</result>
+			<result name="dynamic">/foot.jsp</result>
+			<result name="article">/article.jsp</result>
 		</action>
 	
 		<action name="upload_*" class="org.bigjava.action.QuestionAction" method="{1}">
 		   <result name="file">/index1.jsp</result>
 		   <result name="error">/login.jsp</result>
-		   <result name="answers">/homePage.jsp</result>
+		   <result name="topic">/index1.jsp</result>
 		</action>
 
-       <action name="saveAnswer" class="org.bigjava.action.AnswerAction" method="uploadAnswer">
-           <result name="answer">/homePage.jsp</result>
-         
+       <action name="save_*" class="org.bigjava.action.AnswerAction" method="{1}">
+           <result name="answer">/homePage.jsp</result> 
+           <result name="answer2">/foot.jsp</result>       
        </action>
+       
+       <action name="saveReview" class="org.bigjava.action.ReviewAction" method="saveReview">
+           <result name="review">/article.jsp</result>        
+       </action>
+       
       
 	</package>
 	

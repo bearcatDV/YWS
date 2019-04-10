@@ -48,7 +48,7 @@
             <column name="INTRODUCE" />
         </property>
         
-        <set name="questions" inverse="false" lazy="true" >  
+        <set name="questions" inverse="false" lazy="true">  
             <key column="userId"></key>  
             <one-to-many class="org.bigjava.bean.Question"></one-to-many>  
         </set>  
@@ -60,11 +60,18 @@
             <one-to-many class="org.bigjava.bean.Comment" />
         </set>
         
-        <set name="answer" inverse="false" lazy="true">
+        <set name="answer" inverse="false" lazy="true" >
             <key>
                 <column name="userID" />
             </key>
             <one-to-many class="org.bigjava.bean.Answer" />
+        </set>
+        
+        <set name="reviews" inverse="false" lazy="true" >
+            <key>
+                <column name="userID" />
+            </key>
+            <one-to-many class="org.bigjava.bean.Review" />
         </set>
         
     </class>

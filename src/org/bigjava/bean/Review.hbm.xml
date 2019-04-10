@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2019-3-29 15:50:05 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 2019-4-8 10:01:57 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="org.bigjava.bean.Answer" table="ANSWER">
+    <class name="org.bigjava.bean.Review" table="REVIEW">
         <id name="id" type="java.lang.Integer">
             <column name="ID" />
             <generator class="native" />
@@ -12,11 +12,11 @@
             <column name="COMM" />
         </property>
         
-        <many-to-one name="question" class="org.bigjava.bean.Question" fetch="join" >
-            <column name="questionID" />
+        <many-to-one name="article" class="org.bigjava.bean.Article" fetch="join">
+            <column name="articleID" />
         </many-to-one>
         
-        <many-to-one name="user" class="org.bigjava.bean.User" fetch="join" >
+        <many-to-one name="user" class="org.bigjava.bean.User" fetch="join">
             <column name="userID" />
         </many-to-one>
     </class>

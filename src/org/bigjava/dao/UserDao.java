@@ -5,6 +5,7 @@ import java.util.List;
 import org.bigjava.bean.Answer;
 import org.bigjava.bean.Article;
 import org.bigjava.bean.Question;
+import org.bigjava.bean.Review;
 import org.bigjava.bean.User;
 
 public interface UserDao {
@@ -73,7 +74,7 @@ public interface UserDao {
 	 * 得到所有信息
 	 * @return
 	 */
-	public List<Article> getAllArticle();
+	public List<Article> getAllArticle(Integer id);
 	
 	/*
 	  * 得到所有Question
@@ -85,4 +86,9 @@ public interface UserDao {
 	 * 得到所有Anawer
 	 */
 	public List<Answer> getAnswers(Integer id);
+	
+	/*
+	 * 得到所有Review
+	 */
+	public List<Review> getReview(Integer id);
 }

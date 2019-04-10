@@ -1,7 +1,10 @@
 package org.bigjava.dao.impl;
 
+import java.util.List;
+
 import org.bigjava.bean.Answer;
 import org.bigjava.dao.AnswerDao;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -23,5 +26,20 @@ public class AnswerDaoImpl extends Answer implements AnswerDao {
 	    	
 		
 	    }
+
+		@Override
+		public List getAllAnswers() {
+			String hql="FROM Answer";
+			Query query = getSession().createQuery(hql);
+			
+			List list =query.list();
+			System.out.println("getAll2"+list);
+			if(list == null){
+				list= null;
+			}
+
+			return list;
+		
+		}
 
 }

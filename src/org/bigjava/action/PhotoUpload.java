@@ -109,7 +109,7 @@ public class PhotoUpload extends ActionSupport implements ModelDriven<User>,Requ
 			userDao.savaPhotoById(user);
 			User user1=userDao.getUserById(user.getId());
 			List<Question> questions = userDao.getQuestions(user.getId());
-			List<Answer> answers = questionDao.getAnswers(question.getId());
+			
 			System.out.println("upload_user1"+user1);
 	
 			request.put("questions",questions);

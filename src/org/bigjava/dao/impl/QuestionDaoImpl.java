@@ -32,12 +32,13 @@ public class QuestionDaoImpl implements QuestionDao {
 
 	@Override
 	public List<Answer> getAnswers(Integer id) {
-		String hql = "FROM Answer answer where answer.Question=?";
+		String hql = "FROM Answer answer where answer.question=?";
 
 		Query query = getSession().createQuery(hql);
 		query.setInteger(0, id);
 		List list = query.list();
-		System.out.println("倪马妮：：" +list);
+		
+		System.out.println("闫妮马：" +list);
 		
 		if(list==null) {
 			list=null;

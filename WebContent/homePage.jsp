@@ -15,22 +15,35 @@
 	<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	
-	<!--  
+	  
 	<script type="text/javascript">
-	$(document).ready(function(){
+	  $(document).ready(function(){
+			
 		  $(".but").click(function(){
-	      var val = $(this).val();
-	      if(val=="评论"){
-		 // $(this).next().show();
-		  $(this).val("收起评论");
+	      var sub = $(this).text();
+	      
+	      if(sub=="评论"){
+		  $(this).next().show();
+
+		  $(this).text("收起评论");
+
 	      }else{
-	    	 // $(this).next().hide();
-	    	  $(this).val("评论");
+	    	  
+	    	  $(this).next().hide();
+	    	  $(this).text("评论");
 	      }
-		  });
+		  });  
 		});
+	  
+	 function dynamic(){
+		 var val = document.getElementById("dyna");
+		 val.style.display="none";
+		 var di = document.getElementById("dis");
+		 di.style.display="block";
+	 }
+	
     </script>
-	-->
+
 	<style type="text/css">
 		bady{
 			background:#F6F6F6;
@@ -103,14 +116,14 @@
 			width:100%;
 			height:70px;
 		}
-		.container{
+		.w3-about{
 			border:0px solid blue;
 			background-color:#F6F6F6;
 			width:100%;
-			height:900px;
+			height:auto;
 		}
 		
-		.grids_top ul li{
+		.if_top ul li{
 			margin-top:10px;
 			display:inline-block;
 			font-size:24px;
@@ -125,20 +138,21 @@
 		
 		.grids_middle{
 			width:75%; 
-            height:75%; 
+            height:auto; 
             background-color: yellow; 
 		}
 		
 		
 		.grids_midZong{
 			width:100%; 
-            height: 100%; 
+            height: auto; 
             float:top;
 		}
 		
 		.grids_midTop{
 			width:100%; 
             height:20%; 
+            padding-top:-1%
             float:top;
            
 		}
@@ -167,34 +181,62 @@
 		.grids_midTopFleftRight{
 			width:20%; 
             height:78%; ; 
-            padding-top:2%;
+            
             float:left;
            
 		}
 		
 		.grids_midMid{
 			width:100%; 
-            height: 10%; 
-            padding-top:2%; 
+            height: 10%;  
+            margin-top:8%;
             float:top;
            
 		}
 		.grids_midHead{
 			width:100%; 
             height: 35%; 
+            margin-top:3%;
             float:top;
 		}
 		
 		.grids_comment{
 			width:100%; 
-            height: 35%; 
-            margin-top:6%;
+            height:45%; 
+            margin-top:4%;
+            background-color: green; 
             float:top;
 		}
 		
 		.grids_comz{
 			width:100%; 
-            height: 100%; 
+            height: 75%; 
+          
+		}
+		
+		.grids_comzHead{
+			width:100%; 
+            height: 40px; 
+            border:1px solid black;
+            background-color: yellow; 
+            float:top;
+		}
+		
+		.question_answers{
+			width:100%; 
+            height: 80%; 
+            border:1px solid black;
+            background-color: yellow; 
+            float:top;
+		}
+		
+		.grids_answer{
+			width:100%; 
+            height: 50px; 
+            border:1px solid black;
+            background-color: red; 
+            
+            float:top;
 		}
 		
 	</style>
@@ -282,100 +324,197 @@
 	
 	<!-- xiabian -->
 	<div class="w3-about" id="about">
-	<div class="container">
+	 
+	
+	  
 		<div class="w3-about-head">
 			<h3>知&nbsp;乎</h3>
 			<hr />
 		</div>
-		<div class="w3-about-grids" style="border:0px solid;">
-			<div class="grids_top">
-				<ul>
+		
+		<%
+           Object artiLenth = request.getAttribute("artiLenth");
+		%>
+		
+		<div class="if_zong" style="width:75%;height:100%;margin:0 auto;background:red;">
+		  <div class="if_top" style="width:100%;height:10%;background-color:yellow;float:top;">
+		    <ul>
+				
 					<li>
-					<a href="#">动态</a>
+					<a href="UN_dynamic?id=${user.id }" target="left" onClick="dynamic()" >动态
 					<input type="hidden" name="id" value="<%=request.getParameter("id") %>" />
+					</a>
+					
 					</li>
 					<li><a href="">回答</a></li>
 					<li><a href="">提问</a></li>
-					<li><a href="">文章</a></li>
+					<li><a href="UN_article?id=${user.id }" target="left" onClick="dynamic()">文章&nbsp<%=artiLenth %>
+					<input type="hidden" name="id" value="<%=request.getParameter("id") %>" />
+					</a></li>
+					
 				</ul>
+				
 				<hr />
-			</div>
-			<div class="grids_midT" style="padding-top:2%">我的动态</div>
-			<s:if test="#request.questions == null || #request.questions.size() == 0">
-			  没有任何动态
-			</s:if>
-			<s:else>
+		    
+		  </div> 
+		  
+		  <div class="if_foot" style="width:100%;height:100%;background:green;float:top">
+		  
+		    <div class="if_footLeft" style="width:70%;height:100%;background-color:red;float:left;">
+		    
+		    <div id="dyna">
+		    
+		    	    <div class="grids_midT" style="padding-top:2%">我的动态</div>
+			
+	<%
+	                
+	   				List<Question> list = (List)request.getAttribute("questions");
+	                
 	
-	       
-			<s:iterator value="#request.user">
-			 <s:iterator value="#request.questions">
+					if(list !=null){
+						System.out.println("index1.jsp"+list);
+			
+						 for (int i = 0; i < list.size(); i++) {
+						
+								 
+							 
+				%>
 			  
 			<div class="grids_middle">
 	        <hr>
 	     
-	       <div class="grids_midZong">
+	        <div class="grids_midZong">
         
 	        <div class="grids_midTop">
-	        <div class="grids_midTopTop">发布了想法</div>
+	        <div class="grids_midTopTop" style="background:white;margin-top:-1%;">发布了想法</div>
 	        
 	        <div class="grids_midTopF">
 	        
-	        <div class="grids_midTopFleft">
-	        <img alt="img" src="${photo }" style="width:41px;height:43px;" >
+	        <div class="grids_midTopFleft" style="padding-top:1%;">
+	        <img alt="img" src="<%=list.get(i).getUser().getPhoto() %>" style="width:41px;height:43px;" >
 	        </div>
-	        <div class="grids_midTopFleftRight">
-	        ${username }
+	        <div class="grids_midTopFleftRight" style="padding-top:2%;padding-left:3%">
+	        <%=list.get(i).getUser().getUsername()%>
 	        </div>
 	        </div>
 	        </div>
 	        
-	         <div class="grids_midMid">
-	         
-	         ${what }
+	        <div class="grids_midMid" style="padding-top:2%;">
+	       
+	         <%=list.get(i).getWhat() %>
 	         </div>
 	         
 	         <div class="grids_midHead">
-	         <img alt="img" src="${fileForm }" style="width:164px;height:172px;" >
+	         <img alt="img" src="<%=list.get(i).getFileForm() %>" style="width:164px;height:172px;">
 	        </div>
 	         
 	         <div class="grids_comment">
-	
-	         <form action="upload_answers?${question.id }" method="post">
-	             <input type="button" class="but" value="评论">
-	         </form>
-	            
-	           <s:iterator value="#request.answers">
-  	           <div class="grids_comm">
-  	            ${comm }
-  	           </div>
-  	           	</s:iterator>
-	            
-	         <form action="saveAnswer?question_id=${id }" method="post">
-	         
+	          
+	         <form action="save_answer?id=${user.id }" method="post">
+	          
+	          <a href="#" class="but" style="margin-top:-5%;" />评论</a>
+	          
+	          <!--  
+	           <input type="button" class="but" style="margin-top:-5%;" value="评论">
+	          -->
 	          
 	           <div class="grids_comz" style="display: none">
-               <br><br>
-  	           <input type="text" name="comm" placeholder="请写下你的评论" id="txt1" />
+                   <div class="grids_comzHead">
+                    
+                  </div>
+  	          
+  	            <%
+  	              List<Answer> lists = (List)request.getAttribute("answers");
+  	
+  	               if(lists!=null){
+  	               
+  	            	   int z = list.get(i).getId();
+  	            
+  	            	   for(int j=0; j<lists.size();j++){
+  	            		if(z==lists.get(j).getQuestion().getId()){
+  	            		
+  	            %>
+  	               
+  	             
+  	             <div class="question_answers">
+  	              <div style="width:100%; height:70px;float:top;">
+  	                <div  style="width:8%; height:70px%;float:left; padding-top:2%; padding-left:2%;">
+  	                   <img alt="img" src="<%=lists.get(j).getUser().getPhoto() %>" style="width:41px;height:43px;" > 
+  	                </div>
+  	                <div style="width:80%; height:70px;float:left; padding-top:3%;" >
+  	                  <%=lists.get(j).getUser().getUsername() %>
+  	                </div>
+  	              </div>
+  	              <div style="width:90%;height:40px;float:top;padding-left:2%;padding-top:-10px;background:green">
+  	               <%=lists.get(j).getComm() %>  
+  	              </div>
+  	            
+  	           </div>
   	           
-  	    
+  	           <%
+  	               }
+						 
+  	               }
+  	               }
+  	           %>
+  	           <div class="grids_answer" style="padding-top:1%;background:white">
+  	           <input type="text" name="comm" placeholder="请写下你的评论" id="txt1" />
+  	           <button><a target="right">提交</a></button>
+  	           </div>
   	           
   	           <input type="hidden" name="user_id" value="<%=request.getParameter("id") %>" />
-  	           <input type="hidden" name="question_id" value="<%=request.getParameter("question_id") %>" />
-  	           <input type="submit">
+  	           <input type="hidden" name="question_id" value="<%=list.get(i).getId() %>" />
+  	           
                </div>
 	             
 	         </form>
+	         
 	         </div>
+	         
 	          
 	       </div>
             
 			</div>
-			</s:iterator>
-	           </s:iterator>
-
-			</s:else>
+			<%
+  	            	 
+  	               }
+						}
+					
+				%>
+			
+		    </div>
+		    
+		    <div id="dis" style="display:none;">
+		       <iframe src="" id="myframe" name="left" scrolling="no" width="100%" frameborder="0"
+         onload="this.height=100px" style="overflow:hidden;"  ></iframe>
+		       </div>
+		       <script type="text/javascript">
+           function reinitIframe()
+           {
+               var iframe = document.getElementById("myframe");
+               try{
+                   var bHeight = iframe.contentWindow.document.body.scrollHeight;
+                   var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+                   var height = Math.max(bHeight, dHeight);
+                   iframe.height =  height;
+                   }catch (ex){}
+           }
+           window.setInterval("reinitIframe()", 200);
+           
+       </script>
+		       
+		       
+		       
+		    </div>
+		    <div class="if_footRight" style="width:29%;height:100%;background-color:yellow;float:left;margin-left:1%;">
+		       <iframe src="" name="right" scrolling="no" width="100%" height="100%" ></iframe>
+		    </div>
+		  
+		  </div>
+		  
 		</div>
-	</div>
+		
+	
 </div>
 
 </body>

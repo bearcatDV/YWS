@@ -138,16 +138,17 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public List getAllArticle() {
-		String hql="FROM Article";
+	public List getAllArticle(Integer id) {
+		String hql="FROM Article article where article.user=?";
 		Query query = getSession().createQuery(hql);
-		System.out.println("getAll1");
+		query.setInteger(0, id);
+		
 		List list =query.list();
-		System.out.println("getAll2"+list);
+		
 		if(list == null){
 			list= null;
 		}
-		System.out.println(".....");
+		System.out.println("....."+list);
 		return list;
 	}
 	 
@@ -175,6 +176,21 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public List<Answer> getAnswers(Integer id) {
 		String hql = "FROM Answer answer where answer.user = ?";
+		
+		Query query = getSession().createQuery(hql);
+		query.setInteger(0, id);
+		List list = query.list();
+		System.out.println("嗯哼：" +list);
+		
+		if(list == null) {
+			list=null;
+		}
+		return list;
+	}
+
+	@Override
+	public List<Review> getReview(Integer id) {
+String hql = "FROM Review review where review.user = ?";
 		
 		Query query = getSession().createQuery(hql);
 		query.setInteger(0, id);

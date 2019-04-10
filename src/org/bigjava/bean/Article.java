@@ -18,7 +18,7 @@ public class Article {
 	private String picture;//文章图片
 	private String content;//文章正文
 	private String category;//文章类别
-	private Set<Comment> comments= new HashSet<Comment>();
+	private Set<Review> reviews= new HashSet<Review>();
 	private User user;
 	
 	public User getUser() {
@@ -58,27 +58,27 @@ public class Article {
 		this.category = category;
 	}
 	
-	
-	public Set<Comment> getComments() {
-		return comments;
+	public Set<Review> getReviews() {
+		return reviews;
 	}
-	public void setComments(Set<Comment> comments) {
-		this.comments = comments;
+	public void setReviews(Set<Review> reviews) {
+		this.reviews = reviews;
 	}
-	
 	@Override
 	public String toString() {
 		return "Article [id=" + id + ", article_title=" + article_title + ", picture=" + picture + ", content="
 				+ content + ", category=" + category + ", user=" + user + "]";
 	}
-	public Article(Integer id, String article_title, String picture, String content, String category, User user) {
+	
+	public Article(Integer id, String article_title, String picture, String content, String category,
+			Set<Review> reviews) {
 		super();
 		this.id = id;
 		this.article_title = article_title;
 		this.picture = picture;
 		this.content = content;
 		this.category = category;
-		this.user = user;
+		this.reviews = reviews;
 	}
 	public Article() {}
 	

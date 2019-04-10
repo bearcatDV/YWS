@@ -17,19 +17,35 @@ import org.bigjava.dao.UserDao;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
-public class AnswerAction extends ActionSupport implements RequestAware,ModelDriven<Answer>,ServletRequestAware {
+public class AnswerAction implements RequestAware,ModelDriven<Answer>,ServletRequestAware {
 	
 	private Answer answer;
 	private AnswerDao answerDao;
 	private HttpServletRequest req ;
+	private UserDao userDao;
+	private QuestionDao questionDao;
+	private User user;
 	
 	
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public void setUserDao(UserDao userDao) {
+		this.userDao = userDao;
+	}
 	
 	public void setAnswerDao(AnswerDao answerDao) {
 		this.answerDao = answerDao;
 	}
 
-	public String uploadAnswer() {
+	public String answer() {
+		
 		
 		Integer user_id = Integer.parseInt(req.getParameter("user_id"));  
 		Integer question_id = Integer.parseInt(req.getParameter("question_id"));  
@@ -37,11 +53,44 @@ public class AnswerAction extends ActionSupport implements RequestAware,ModelDri
 		answer.setUser(new User(user_id));
 		answer.setQuestion(new Question(question_id));
 		
-		System.out.println("日了狗：" +answer);
+		answerDao.saveAnswer(answer);
+		
+		User user1 = userDao.getUserById(user_id);
+		List<Question> questions = userDao.getQuestions(user_id);
+		List<Answer> answers = answerDao.getAllAnswers();
+		
+		Integer ansLenth = answers.size();
+		
+		request.put("answers", answers);
+		request.put("user", user1);
+		request.put("ansLenth", ansLenth);
+		request.put("questions", questions);
+		
+		return "answer";
+	}
+	
+public String answer2() {
+
+		Integer user_id = Integer.parseInt(req.getParameter("user_id"));  
+		Integer question_id = Integer.parseInt(req.getParameter("question_id"));  
+		
+		answer.setUser(new User(user_id));
+		answer.setQuestion(new Question(question_id));
 		
 		answerDao.saveAnswer(answer);
-				
-		return "answer";
+		
+		User user1 = userDao.getUserById(user_id);
+		List<Question> questions = userDao.getQuestions(user_id);
+		List<Answer> answers = answerDao.getAllAnswers();
+		
+		Integer ansLenth = answers.size();
+		
+		request.put("answers", answers);
+		request.put("user", user1);
+		request.put("ansLenth", ansLenth);
+		request.put("questions", questions);
+		
+		return "answer2";
 	}
 
 	@Override

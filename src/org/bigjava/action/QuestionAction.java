@@ -14,7 +14,9 @@ import org.apache.struts2.interceptor.ServletRequestAware;
 import org.bigjava.bean.Answer;
 import org.bigjava.bean.Question;
 import org.bigjava.bean.User;
+import org.bigjava.dao.AnswerDao;
 import org.bigjava.dao.QuestionDao;
+import org.bigjava.dao.UserDao;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -28,10 +30,29 @@ public class QuestionAction extends ActionSupport implements RequestAware, Servl
 	private String myFileFileName;		// 上传文件的名称
 	private String destPath;	       // 上传到的地址 
 	private Question question;
+	private UserDao userDao;
+	private User user;
+	private AnswerDao answerDao;
 	
 	private QuestionDao questionDao;
 	
 	private HttpServletRequest req ;
+	
+	public void setAnswerDao(AnswerDao answerDao) {
+		this.answerDao = answerDao;
+	}
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public void setUserDao(UserDao userDao) {
+		this.userDao = userDao;
+	}
 	
 	public void setQuestionDao(QuestionDao questionDao) {
 		this.questionDao = questionDao;
@@ -71,6 +92,18 @@ public class QuestionAction extends ActionSupport implements RequestAware, Servl
 		return "file";
 	}
 
+	
+	public String topic() {
+		
+		List<Question> questions = userDao.getQuestions(user.getId());
+		List<Answer> answers = answerDao.getAllAnswers();
+		
+		if(questions!=null) {
+			return "topic";
+		}
+		return ERROR;
+		
+	}
 
 	public File getMyFile() {
 		return myFile;
@@ -95,15 +128,6 @@ public class QuestionAction extends ActionSupport implements RequestAware, Servl
 	public void setMyFileFileName(String myFileFileName) {
 		this.myFileFileName = myFileFileName;
 	}
-
-    public String answers() {
-    	
-    	List<Answer> answers = questionDao.getAnswers(question.getId());
-    	
-    	request.put("answers", answers);
-    	
-    	return "answers";
-    }
 
 	@Override
 	public String toString() {

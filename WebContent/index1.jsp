@@ -579,7 +579,6 @@
 	width:99%;
 	height:100%;
 }
-t
 </style>
 
 <script type="text/javascript">
@@ -615,7 +614,7 @@ $(function(){
 				</div>
 
 				<div class="h_left_b">
-					<a href="#">首页</a> <a href="#">发现</a> <a href="#">话题</a>
+					<a href="#">首页</a> <a href="#">发现</a> <a href="upload_topic">话题</a>
 				</div>
 
 				<div class="h_left_c">
@@ -644,6 +643,7 @@ $(function(){
 						<div id="head_overlay" onmouseover="over(this)"
 							onmouseout="out(this)">
 							<a href="UN_homePage?id=${user.id}">我的主页</a>
+							
 						</div>
                           <div id="middle_overlay" onclick="javaScriptDiv(id)"
 	                   onmouseover="over(this)" onmouseout="out(this)">设置</div>
@@ -659,47 +659,26 @@ $(function(){
 			
 
 		<div class="middle">
-			<div class="middle_left">
-
+		
+              <div id="dynamic">
+                    <iframe src="" id="myframe" name="left" scrolling="no" width="100%" frameborder="0"
+         onload="this.height=100px" style="overflow:hidden;"  ></iframe>
+		       </div>
+		       <script type="text/javascript">
+           function reinitIframe()
+           {
+               var iframe = document.getElementById("myframe");
+               try{
+                   var bHeight = iframe.contentWindow.document.body.scrollHeight;
+                   var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+                   var height = Math.max(bHeight, dHeight);
+                   iframe.height =  height;
+                   }catch (ex){}
+           }
+           window.setInterval("reinitIframe()", 200);
            
-				<%
-					List<Article> list = (List)request.getAttribute("articles");
-					if(list !=null){
-						System.out.println("index1.jsp"+list);
-						for (int i = 0; i < list.size(); i++) {
-				%>
-				<div id="middle_top">
-					<div class="meddle_title">
-						<p><%=list.get(i).getArticle_title() %></p>
-					</div>
-					<div class="meddle_content">
-						<%=list.get(i).getUser().getUsername() %>说：<%=list.get(i).getContent() %>
-						<img alt="img" src="<%=list.get(i).getPicture() %>" style="margin-top:2px;" class="content_img">
-					</div>
-					<div style="height:20px">
-						<button type="button" class="pl_button">评论</button><button type="button" class="mz_button">阅读全文</button>
-					</div>
-					<form action="Com_content?id=${user.id }" method="post">
-						<div id='txtDiv' style='border:1px solid #cccccc; height:240px;' class="txt_class<%=i %>">
-							<p class="txt_content">您想对<strong><%=list.get(i).getUser().getUsername() %></strong>说:</p>
-								<input type="hidden" name="comment.content" id="txtDiv_hi" />
-								<input type="hidden" value="<%=request.getParameter("id") %>" name="user_id" />
-								<input type="hidden" value="<%=list.get(i).getId() %>" name="article_id" />
-								
-						</div>
-						<input type="hidden" value="0" class="fwb" />
-						<input type="submit" value="提交" id="txtDiv_sm" onclick="fwb()"/>
-					</form>
-					<hr style="border: none; border-top: #ccc dashed 2px;" />
-				</div>
-				<script type="text/javascript">
-					
-				</script>
-				<%
-						}
-					}
-				%>
-
+       </script>
+              
 			</div>
 			<div class="middle_right">
 				<div class="mr_top">
@@ -729,11 +708,12 @@ $(function(){
    <textarea name="what" rows="15%" cols="70%" style=" margin-left: 2.5%; margin-top:-5%" value="" onkeyup="ifNull();"></textarea>
     <br>
     <input type="file" name="myFile" style="display:none;" onchange="preview()" id="fileload" /> 
-    
+
+
     <button onclick="myFile.click();" name="get_file" style="margin-top:; background:white; outline:none; border:none; position: absolute; top:70%; left:5%;" ><a href="#">上传图片</a></button>
-   
+
 	    <button style="border:none; outline:none; margin-left:20%;" onclick="call();"><a href="#">x</a></button>
-	    、
+	    
 		<img id="image" />
 
          <input type="hidden" name="user_id" value="<%=request.getParameter("id") %>" />

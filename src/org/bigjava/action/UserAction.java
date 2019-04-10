@@ -6,12 +6,18 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.struts2.interceptor.RequestAware;
+import org.apache.struts2.interceptor.ServletRequestAware;
 import org.bigjava.bean.Answer;
 import org.bigjava.bean.Article;
 import org.bigjava.bean.Question;
+import org.bigjava.bean.Review;
 import org.bigjava.bean.User;
+import org.bigjava.dao.AnswerDao;
 import org.bigjava.dao.QuestionDao;
+import org.bigjava.dao.ReviewDao;
 import org.bigjava.dao.UserDao;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -19,7 +25,7 @@ import com.opensymphony.xwork2.ModelDriven;
 
 
 
-public class UserAction extends ActionSupport implements RequestAware,ModelDriven<User>{
+public class UserAction extends ActionSupport implements ServletRequestAware,RequestAware,ModelDriven<User>{
  
 	private static final long serialVersionUID = 7622329058096927609L;
 	private User user;
@@ -28,11 +34,22 @@ public class UserAction extends ActionSupport implements RequestAware,ModelDrive
 	private Map<String, Object> request;
 	private String result;
 	private QuestionDao questionDao;
+	private AnswerDao answerDao;
+	private HttpServletRequest req ;
+	private ReviewDao reviewDao;
 	
 	private String result1;
 	private String rePassword; //密码确认验证
 	Matcher matcher=null;
 	Pattern pattern=null;
+	
+	public void setReviewDao(ReviewDao reviewDao) {
+		this.reviewDao = reviewDao;
+	}
+	
+	public void setAnswerDao(AnswerDao answerDao) {
+		this.answerDao = answerDao;
+	}
 	
 	public void setQuestionDao(QuestionDao questionDao) {
 		this.questionDao = questionDao;
@@ -248,10 +265,10 @@ public class UserAction extends ActionSupport implements RequestAware,ModelDrive
 	//登录成功
 	public String loginOk(){
 		System.out.println("来啦 老弟："+user);
-		List<Article> list=userDao.getAllArticle();
+		
 			
 		System.out.println("射了 老弟："+user);
-		request.put("articles", list);
+		
 		
 		request.put("user", user);
 		return SUCCESS;
@@ -260,11 +277,64 @@ public class UserAction extends ActionSupport implements RequestAware,ModelDrive
 		User user1=userDao.getUserById(user.getId());
 		List<Question> questions = userDao.getQuestions(user.getId());
 		
+		List<Answer> answers = answerDao.getAllAnswers();
+		List<Article> articles  = userDao.getAllArticle(user.getId());
+		
+		Integer ansLenth = answers.size();
+		Integer artiLenth = articles.size();
+		
+		request.put("answers", answers);
 		request.put("questions" ,questions);
+		request.put("ansLenth", ansLenth);
+		request.put("artiLenth", artiLenth);
 		request.put("user", user1);
 		System.out.println("homePage_user1"+user1);
 		return "homePage";
 	}
+	
+	public String dynamic()throws Exception{
+		
+		Integer user_id = Integer.parseInt(req.getParameter("id"));
+		
+		User user1 = userDao.getUserById(user_id);
+		List<Question> questions = userDao.getQuestions(user_id);
+		
+		List<Answer> answers = answerDao.getAllAnswers();
+		
+		Integer quesLenth = questions.size();
+		Integer ansLenth = answers.size();
+		
+	   System.out.println("多少：" +quesLenth +ansLenth);
+		
+		request.put("answers", answers);
+		request.put("questions" ,questions);
+		request.put("quesLenth", quesLenth);
+		request.put("ansLenth", ansLenth);
+		request.put("user", user1);
+		
+		return "dynamic";
+	}
+	
+public String article()throws Exception{
+		
+		Integer user_id = Integer.parseInt(req.getParameter("id"));
+		
+		User user1 = userDao.getUserById(user_id);
+		List<Article> articles = userDao.getAllArticle(user_id);
+		List<Review> reviews = reviewDao.getAllReview();
+		
+		Integer artiLenth = articles.size();
+		Integer reviLenth = reviews.size();
+		
+		request.put("artiLenth", artiLenth);
+		request.put("reviLenth", reviLenth);
+		request.put("articles", articles);
+		request.put("reviews", reviews);
+		request.put("user", user1);
+		
+		return "article";
+	}
+	
 	//上传头像
 	public String upload() throws Exception{
 		System.out.println("id"+user.getId());
@@ -279,6 +349,12 @@ public class UserAction extends ActionSupport implements RequestAware,ModelDrive
 			user= new User();
 		}
 		return user;
+	}
+
+	@Override
+	public void setServletRequest(HttpServletRequest arg0) {
+		this.req = arg0;
+		
 	}
 	
 

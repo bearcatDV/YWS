@@ -25,12 +25,21 @@ public class User {
 	private Set<Article> articles = new HashSet<Article>();//文章
 	private Set<Comment> comments = new HashSet<Comment>();//评论
 	private Set<Answer> answer = new HashSet<Answer>();
+	private Set<Review> reviews = new HashSet<Review>();
 	
-	
+
+	public Set<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(Set<Review> reviews) {
+		this.reviews = reviews;
+	}
 
 	public User(Integer id, String username, String account, String password, String age, String sex, String phone,
 			String state, String photo, String data, String address, String email, String hobby, String introduce,
-			Set<Question> questions, Set<Article> articles, Set<Comment> comments, Set<Answer> answer) {
+			Set<Question> questions, Set<Article> articles, Set<Comment> comments, Set<Answer> answer,
+			Set<Review> reviews) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -50,6 +59,7 @@ public class User {
 		this.articles = articles;
 		this.comments = comments;
 		this.answer = answer;
+		this.reviews = reviews;
 	}
 
 	public User() {}
