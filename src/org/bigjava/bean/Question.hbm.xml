@@ -15,7 +15,7 @@
             <column name="FILEFORM" />
         </property>
         
-        <many-to-one name="user" class="org.bigjava.bean.User" column="userId" fetch="join" >
+        <many-to-one name="user" class="org.bigjava.bean.User" column="userId" lazy="false" fetch="join" >
         </many-to-one> 
         
         <set name="answer" inverse="false" lazy="true">

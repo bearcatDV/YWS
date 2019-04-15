@@ -13,4 +13,8 @@ public interface QuestionDao {
 		//拿到该问题所有评论
 		public List<Answer> getAnswers(Integer id);
 		
+		//拿到所有问题
+		public List<Question> getAllQuestion();
+		
+		
 }

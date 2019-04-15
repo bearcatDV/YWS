@@ -118,7 +118,6 @@
 		}
 		.w3-about{
 			border:0px solid blue;
-			background-color:#F6F6F6;
 			width:100%;
 			height:auto;
 		}
@@ -139,7 +138,6 @@
 		.grids_middle{
 			width:75%; 
             height:auto; 
-            background-color: yellow; 
 		}
 		
 		
@@ -204,7 +202,6 @@
 			width:100%; 
             height:45%; 
             margin-top:4%;
-            background-color: green; 
             float:top;
 		}
 		
@@ -218,7 +215,6 @@
 			width:100%; 
             height: 40px; 
             border:1px solid black;
-            background-color: yellow; 
             float:top;
 		}
 		
@@ -226,18 +222,21 @@
 			width:100%; 
             height: 80%; 
             border:1px solid black;
-            background-color: yellow; 
             float:top;
 		}
 		
 		.grids_answer{
 			width:100%; 
             height: 50px; 
-            border:1px solid black;
-            background-color: red; 
-            
+            border:1px solid black;           
             float:top;
 		}
+		
+		a:link{color:black;
+	        font-size:30;
+			text-decoration:none;
+			font-weight:bold;
+			}           
 		
 	</style>
 </head>
@@ -336,8 +335,8 @@
            Object artiLenth = request.getAttribute("artiLenth");
 		%>
 		
-		<div class="if_zong" style="width:75%;height:100%;margin:0 auto;background:red;">
-		  <div class="if_top" style="width:100%;height:10%;background-color:yellow;float:top;">
+		<div class="if_zong" style="width:75%;height:100%;margin:0 auto;">
+		  <div class="if_top" style="width:100%;height:10%;float:top;">
 		    <ul>
 				
 					<li>
@@ -358,9 +357,9 @@
 		    
 		  </div> 
 		  
-		  <div class="if_foot" style="width:100%;height:100%;background:green;float:top">
+		  <div class="if_foot" style="width:100%;height:100%;float:top">
 		  
-		    <div class="if_footLeft" style="width:70%;height:100%;background-color:red;float:left;">
+		    <div class="if_footLeft" style="width:70%;height:100%;float:left;">
 		    
 		    <div id="dyna">
 		    
@@ -386,7 +385,7 @@
 	        <div class="grids_midZong">
         
 	        <div class="grids_midTop">
-	        <div class="grids_midTopTop" style="background:white;margin-top:-1%;">发布了想法</div>
+	        <div class="grids_midTopTop" style="margin-top:-1%;">发布了想法</div>
 	        
 	        <div class="grids_midTopF">
 	        
@@ -420,7 +419,7 @@
 	          
 	           <div class="grids_comz" style="display: none">
                    <div class="grids_comzHead">
-                    
+                   
                   </div>
   	          
   	            <%
@@ -441,11 +440,11 @@
   	                <div  style="width:8%; height:70px%;float:left; padding-top:2%; padding-left:2%;">
   	                   <img alt="img" src="<%=lists.get(j).getUser().getPhoto() %>" style="width:41px;height:43px;" > 
   	                </div>
-  	                <div style="width:80%; height:70px;float:left; padding-top:3%;" >
+  	                <div style="width:80%; height:70px;float:left; padding-top:3%;padding-left:1%;" >
   	                  <%=lists.get(j).getUser().getUsername() %>
   	                </div>
   	              </div>
-  	              <div style="width:90%;height:40px;float:top;padding-left:2%;padding-top:-10px;background:green">
+  	              <div style="width:90%;height:40px;float:top;padding-left:2%;padding-top:-10px;">
   	               <%=lists.get(j).getComm() %>  
   	              </div>
   	            
@@ -457,7 +456,7 @@
   	               }
   	               }
   	           %>
-  	           <div class="grids_answer" style="padding-top:1%;background:white">
+  	           <div class="grids_answer" style="padding-top:1%;">
   	           <input type="text" name="comm" placeholder="请写下你的评论" id="txt1" />
   	           <button><a target="right">提交</a></button>
   	           </div>
@@ -506,8 +505,53 @@
 		       
 		       
 		    </div>
-		    <div class="if_footRight" style="width:29%;height:100%;background-color:yellow;float:left;margin-left:1%;">
-		       <iframe src="" name="right" scrolling="no" width="100%" height="100%" ></iframe>
+		    
+		    <div class="if_footRight" style="width:29%;height:800px;float:left;margin-left:1%;">
+		    
+		       <div style="width:100%;height:60px;background:red;float:top;line-height:60px;">
+		               个人成就
+		       </div>
+		       
+		       <div style="width:100%;height:80px;background:yellow;float:top;text-align:center;line-height:80px;">
+		             参与了<%=artiLenth %>  次文章编辑
+		       </div>
+		      
+		      <div style="width:100%;height:100px;background:red;float:top; margin-top:10px;">
+		      
+		        <div style="width:50%; height:100px;float:left; background:green;;text-align:center;line-height:100px;">关注了</div>
+		        <div style="width:50%; height:100px;float:left;background:yellow;text-align:center;line-height:100px;">关注者</div>
+		         
+		       </div>
+		       
+		       <hr>
+		       <a href="#">关注的话题</a>
+		       
+		       <hr>
+		       <a href="#">关注的专栏</a>
+		       
+		       <hr>
+		       <a href="#">关注的问题</a>
+		       
+		       <hr>
+		       <a href="#">关注的收藏夹</a>
+		       
+		       <hr>
+		       <p style="font-size:12px;"><a href="#">XXX</a><a href="#">•论坛指南</a><a href="#">•论坛协议</a><a href="#">•论坛隐私保护指引</a></p>
+		       
+		       <p style="font-size:12px;"><a href="#">应用</a><a href="#">•工作</a><a href="#">•申请开通论坛机构号</a></p>
+		       
+		       <p style="font-size:12px;"><a href="#">侵权举报</a><a href="#">•网上有害信息举报专区</a></p>
+		       
+		       <p style="font-size:12px;"><a href="#">违法和不良信息举报：110</a></p>
+		       
+		       <p style="font-size:12px;"><a href="#">儿童色情信息举报专区</a></p>
+		       
+		       <p style="font-size:12px;"><a href="#">电信与服务行业经营许可证</a></p>
+		       
+		       <p style="font-size:12px;"><a href="#">网络文化经营许可证</a></p>
+		       
+		       <p style="font-size:12px;"><a href="#">联系我们 @2019</a></p>
+		      
 		    </div>
 		  
 		  </div>

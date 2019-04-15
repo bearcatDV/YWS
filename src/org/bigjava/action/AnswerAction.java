@@ -35,6 +35,10 @@ public class AnswerAction implements RequestAware,ModelDriven<Answer>,ServletReq
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	public void setQuestionDao(QuestionDao questionDao) {
+		this.questionDao = questionDao;
+	}
 
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
@@ -92,6 +96,28 @@ public String answer2() {
 		
 		return "answer2";
 	}
+
+  public String answer3() {
+
+	Integer user_id = Integer.parseInt(req.getParameter("user_id"));  
+	Integer question_id = Integer.parseInt(req.getParameter("question_id"));  
+	
+	answer.setUser(new User(user_id));
+	answer.setQuestion(new Question(question_id));
+	
+	answerDao.saveAnswer(answer);
+	
+	User user1 = userDao.getUserById(user_id);
+	List<Question> questions = questionDao.getAllQuestion();
+	List<Answer> answers = answerDao.getAllAnswers();
+	
+	
+	request.put("answers", answers);
+	request.put("user", user1);	
+	request.put("questions", questions);
+	
+	return "answer3";
+}
 
 	@Override
 	public Answer getModel() {

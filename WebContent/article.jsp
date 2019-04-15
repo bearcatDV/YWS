@@ -10,18 +10,18 @@
    $(function(){
 	   
 	   $(".comm_button").click(function(){
-		      var but = $(this).val();
+		      var but = $(this).text();
 		      
 		      
 		      if(but=="评论"){
 		    	  $(this).next().show();
 		    	  
-				  $(this).val("收起评论");
+				  $(this).text("收起评论");
 
 		      }else{
 		    	  
 		    	  $(this).next().hide();
-					$(this).val("评论");
+					$(this).text("评论");
 		      }
 			  });
 		
@@ -44,6 +44,7 @@
 		
 		
 	});
+   
  </script>
 
   <style type="text/css">
@@ -127,7 +128,7 @@
 
    <div>
      <div class="atr_zong1">我的文章</div>
-     
+     <hr>
      <%
                     
 	   				List<Article> list = (List)request.getAttribute("articles");
@@ -152,7 +153,7 @@
        
        <img alt="img" src="<%=list.get(i).getUser().getPhoto() %>" style="width:41px;height:43px;" >
        </div>
-       <div style="width:20%;height:60px;float:left; background-color:yellow;line-height:60px ">
+       <div style="width:20%;height:60px;float:left;line-height:60px ">
        <%=list.get(i).getUser().getUsername() %>
     
        </div>
@@ -195,15 +196,13 @@
      	
      </div> 
    
-    <a href="#" class="mz_button">阅读全文﹀</a>
-   
+    <a href="#" class="mz_button" style="margin-top:-100px;">阅读全文﹀</a>
+    
     <div>
 
-     <form action="saveReview?id=${user.id }" method="post">
-   
-     <input type="button" class="comm_button" value="评论" />
+      <a href="#" class="comm_button">评论</a>
     
-      <div class="atr_TOPZ" style="display: none;margin-top:2%;">
+      <div class="atr_TOPZ" style="display:none;margin-top:2%;border:1px solid;">
       <%
   	              List<Review> lists = (List)request.getAttribute("reviews");
   	
@@ -217,30 +216,30 @@
   	  %>
   	            
     
-     <div class="atr_top" style="width:100%;height:60px;background:white;float:top">
-       <div class="atr_top1" style="width:6%;height:60px;background:yellow;float:left;">
+     <div class="atr_top" style="width:100%;height:60px;float:top">
+       <div class="atr_top1" style="width:6%;height:60px;float:left;">
        
         <img alt="img" src="<%= lists.get(j).getUser().getPhoto()%>" style="width:41px;height:43px;margin-top:8px;">
        </div>
-       <div class="atr_top2" style="width:10%;height:60px;background:green;float:left;line-height:60px;">
+       <div class="atr_top2" style="width:10%;height:60px;float:left;line-height:60px;">
         <%=lists.get(j).getUser().getUsername() %>
        </div>
      </div>
      <div class="atr_Review">
       <%=lists.get(j).getComm() %>
      </div>
-     
+     <hr>
      <%
   	            		}
   	            		}
   	            	   }
      %>
      
-     <div class="atr_zong6" style="width:100%;height:50px;">
-   
+     <div class="atr_zong6" style="width:100%;height:50px; padding-top:-5px;">
+   <form action="saveReview?id=${user.id }" method="post">
       
-        <input type="text" name="comm" />
-        <input type="submit" value="添加评论" />
+        <input type="text" name="comm" placeholder="请写下你的评论" style="width:75%;height:25px;" />
+        <input type="submit" value="添加评论" style="width:10%;height:30px;" />
       
       <input type="hidden" name="user_ID" value="<%=request.getParameter("id") %>" />
       <input type="hidden" name="article_ID" value="<%=list.get(i).getId() %>" />

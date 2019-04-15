@@ -174,6 +174,11 @@
 						
 						//将url赋值给img的src属性
 						img.src = url;
+						
+						if(img.src==""){
+							img.style.display="none";
+							documnet.getElementById("x").style.display="none";
+						}
 					};
 
 
@@ -187,7 +192,10 @@
 					document.getElementById("fileload").value = "";
 				};
 			
+				function NoImage(imgObject){   
 					
+					this.style.display="none";
+					}
 			
 		</script>
 <style type="text/css">
@@ -358,10 +366,10 @@
 	height: 30px;
 }
 
- #pop {   display: none; 
+ #pop {     display: none; 
             position: absolute; 
-            top: 30%; 
-            left: 18%; 
+            top:; 
+            left: 69%; 
             width: 8%; 
             height: 15%; 
             background-color: #F6F1B3; 
@@ -427,10 +435,8 @@
 
 .middle {
 	border: 1px solid yellow;
-	width: 65%;
+	width: 55%;
 	height: auto !important;
-	margin: 0 auto;
-	margin-top: 10px;
 	float:;
 }
 
@@ -500,14 +506,12 @@
 .mr_top {
 	            width: 100%; 
                 height: 10%; 
-                background-color: yellow; 
                 float:top;
 }
 
 .m_left{
                 width: 30%; 
                 height: 100%; 
-                background-color: yellow; 
                 float:left;
             
 			}
@@ -515,7 +519,6 @@
 			.m_middle{
                 width: 30%; 
                 height: 100%; 
-                background-color: red; 
                 float:left;
                 margin-left:5%
             
@@ -524,7 +527,6 @@
 			.m_right{
                 width: 30%; 
                 height: 100%; 
-                background-color: yellow; 
                 float:right;
             
 			}
@@ -579,6 +581,7 @@
 	width:99%;
 	height:100%;
 }
+
 </style>
 
 <script type="text/javascript">
@@ -614,7 +617,7 @@ $(function(){
 				</div>
 
 				<div class="h_left_b">
-					<a href="#">首页</a> <a href="#">发现</a> <a href="upload_topic">话题</a>
+					<a href="#">首页</a> <a href="#">发现</a> <a href="upload_topic?id=${user.id }" target="left">话题</a>
 				</div>
 
 				<div class="h_left_c">
@@ -640,11 +643,11 @@ $(function(){
 					<div id="pop">
 						<div class="nav nav-border"></div>
 						<div class="nav nav-background"></div>
-						<div id="head_overlay" onmouseover="over(this)"
-							onmouseout="out(this)">
-							<a href="UN_homePage?id=${user.id}">我的主页</a>
+						
+						<a href="UN_homePage?id=${user.id}"><div id="head_overlay" onmouseover="over(this)"onmouseout="out(this)">
+							我的主页
 							
-						</div>
+						</div></a>
                           <div id="middle_overlay" onclick="javaScriptDiv(id)"
 	                   onmouseover="over(this)" onmouseout="out(this)">设置</div>
 						<div id="foot_overlay" onclick="javaScriptDiv(id)"
@@ -656,9 +659,9 @@ $(function(){
 		</div>	
 				
 				
-			
+   <div style="width:75%;height:auto;margin-left:17.5%;">
 
-		<div class="middle">
+		<div class="middle" style="width:62%;height:100%;float:left;">
 		
               <div id="dynamic">
                     <iframe src="" id="myframe" name="left" scrolling="no" width="100%" frameborder="0"
@@ -680,7 +683,7 @@ $(function(){
        </script>
               
 			</div>
-			<div class="middle_right">
+			<div class="middle_right" style="width:25%;height:100%;float:left;">
 				<div class="mr_top">
 
 					<div class="m_left"></div>
@@ -694,7 +697,7 @@ $(function(){
 
 				</div>
 			</div>
-
+    </div>
 		</div>
 
 	</div>
@@ -703,19 +706,24 @@ $(function(){
 		  <h1 style="text-align:center;margin-top:-3%">写想法</h1>
 		  <h4 style="text-align:center">ZH写出你的想法</h4>
           
-    <form name="fileSave" action="upload_filesave"  method="post" enctype="multipart/form-data" style=" margin-align:center;" >  
+    <form name="fileSave" action="upload_filesave?id=${user.id }"  method="post" enctype="multipart/form-data" style=" margin-align:center;" >  
     <br><br>
    <textarea name="what" rows="15%" cols="70%" style=" margin-left: 2.5%; margin-top:-5%" value="" onkeyup="ifNull();"></textarea>
     <br>
     <input type="file" name="myFile" style="display:none;" onchange="preview()" id="fileload" /> 
 
+<!-- 
+    <a href="#" onclick="myFile.click();" name="get_file" style="position: absolute; top:70%; left:5%;" >上传图片</a>
+    
+ -->
 
-    <button onclick="myFile.click();" name="get_file" style="margin-top:; background:white; outline:none; border:none; position: absolute; top:70%; left:5%;" ><a href="#">上传图片</a></button>
+    <button onclick="myFile.click();" name="get_file" style="width:66px;height:18px;text-align:center ; background:white; outline:none; border:none; position: absolute; top:70%; left:5%;" ><a href="#">上传图片</a></button>
 
-	    <button style="border:none; outline:none; margin-left:20%;" onclick="call();"><a href="#">x</a></button>
+     <div style="margin-top:1%"><a id="x" href="#" style="margin-left:20%;" onclick="call();">x</a></div>
+	  
 	    
-		<img id="image" />
-
+		<img src="" id="image" style="width:47px;height:43px;border:1px solid white;margin-left:2%;"  />
+        
          <input type="hidden" name="user_id" value="<%=request.getParameter("id") %>" />
          
 		<input type="submit" value="提交" id="ifSubmit" disabled="true" style="width:55%; height:40px; margin-left:25%; margin-top:13%; background-color:#00BFFF; border:none" />
@@ -726,10 +734,10 @@ $(function(){
     <script language="javascript" type="text/javascript"> 
        var ifSubmit=document.getElementById("ifSubmit");
           function ifNull () { 
-               if(document.fileSave.what.value!="" ||document.fileSave.what.length()==0) {
-                   ifSubmit.disabled=false; 
+               if(document.fileSave.what.value == "" || document.fileSave.what.value.replace('\s+', '') <= 0 || document.fileSave.what.value == null) {
+                   ifSubmit.disabled=true; 
                } else{ 
-            	   ifSubmit.disabled=true; 
+            	   ifSubmit.disabled=false; 
                  }
           }
           

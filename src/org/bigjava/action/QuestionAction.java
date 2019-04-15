@@ -59,8 +59,12 @@ public class QuestionAction extends ActionSupport implements RequestAware, Servl
 	}
 
 	public String filesave() throws Exception {
+		
+		System.out.println("射了吗：？");
+		
 		Integer user_id = Integer.parseInt(req.getParameter("user_id"));  
 		
+		System.out.println("丢你妈？？");
 	
 		question.setUser(new User(user_id));
 		
@@ -95,14 +99,13 @@ public class QuestionAction extends ActionSupport implements RequestAware, Servl
 	
 	public String topic() {
 		
-		List<Question> questions = userDao.getQuestions(user.getId());
+		List<Question> questions = questionDao.getAllQuestion();
 		List<Answer> answers = answerDao.getAllAnswers();
 		
-		if(questions!=null) {
-			return "topic";
-		}
-		return ERROR;
+		request.put("questions", questions);
+		request.put("answers", answers);
 		
+		return "topic";
 	}
 
 	public File getMyFile() {

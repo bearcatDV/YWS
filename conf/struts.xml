@@ -29,12 +29,13 @@
 		<action name="upload_*" class="org.bigjava.action.QuestionAction" method="{1}">
 		   <result name="file">/index1.jsp</result>
 		   <result name="error">/login.jsp</result>
-		   <result name="topic">/index1.jsp</result>
+		   <result name="topic">/topic.jsp</result>
 		</action>
 
        <action name="save_*" class="org.bigjava.action.AnswerAction" method="{1}">
            <result name="answer">/homePage.jsp</result> 
-           <result name="answer2">/foot.jsp</result>       
+           <result name="answer2">/foot.jsp</result> 
+           <result name="answer3">/topic.jsp</result>       
        </action>
        
        <action name="saveReview" class="org.bigjava.action.ReviewAction" method="saveReview">

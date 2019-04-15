@@ -50,8 +50,9 @@
 		
 		.grids_midTop{
 			width:100%; 
-            height:20%; 
+            height:5%; 
             padding-top:-1%
+            background:white;
             float:top;
            
 		}
@@ -145,7 +146,6 @@
 <body>
  <div>
  
-  <div class="grids_midT" style="padding-top:2%">我的动态</div>
 			
 	<%
 	                
@@ -153,7 +153,6 @@
 	                
 	                
 					if(list !=null){
-						System.out.println("index1.jsp"+list);
 			
 						 for (int i = 0; i < list.size(); i++) {
 						
@@ -166,18 +165,10 @@
 	     
 	        <div class="grids_midZong">
         
-	        <div class="grids_midTop">
-	        <div class="grids_midTopTop" style="margin-top:-1%;">发布了想法</div>
-	        
-	        <div class="grids_midTopF">
-	        
-	        <div class="grids_midTopFleft" style="padding-top:1%;">
-	        <img alt="img" src="<%=list.get(i).getUser().getPhoto() %>" style="width:41px;height:43px;" >
-	        </div>
-	        <div class="grids_midTopFleftRight" style="padding-top:2%;padding-left:3%">
-	        <%=list.get(i).getUser().getUsername()%>
-	        </div>
-	        </div>
+	            <div class="grids_midTop">               
+	       
+	        <%=list.get(i).getUser().getUsername() %>&nbsp云:
+	  
 	        </div>
 	        
 	         <div class="grids_midMid" style="padding-top:2%;">
@@ -192,7 +183,7 @@
 	         <div class="grids_comment">
           
 	            
-	         <form action="save_answer2?id=${user.id }" method="post">
+	         <form action="save_answer3?id=${user.id }" method="post">
 	          <a href="#" class="but" style="margin-top:-5%;" />评论</a>
 	                    
 	           <div class="grids_comz" style="display: none">

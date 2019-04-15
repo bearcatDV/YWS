@@ -45,4 +45,18 @@ public class QuestionDaoImpl implements QuestionDao {
 		}
 		return list;
 	}
+
+	@Override
+	public List<Question> getAllQuestion() {
+		String hql = "FROM Question";
+		
+   Query query = getSession().createQuery(hql);
+		
+		List list =query.list();
+		if(list == null){
+			list= null;
+		}
+
+		return list;
+	}
 }
